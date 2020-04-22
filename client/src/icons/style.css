@@ -1,0 +1,86 @@
+/* Global Styles */
+:root {
+  --primary-color: #f25797;
+  --secondary-color: #abff4f;
+  --dark-color: #1c0f13;
+  --light-color: #6e7e85;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+* {
+  margin: 0px;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+
+button {
+  font-family: sans-serif;
+}
+header {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  margin: auto;
+  margin-top: 0.5rem;
+  height: 10vh;
+}
+
+.logo,
+.cart {
+  height: 50px;
+  cursor: pointer;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.form-container {
+  width: 50%;
+  margin: auto;
+  padding: 0 2rem;
+}
+
+.large {
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.form {
+  margin-top: 1rem;
+}
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.3rem;
+  border: 1px solid var(--light-color);
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  outline: none;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--dark-color);
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  outline: none;
+}
+.btn:hover {
+  background-color: var(--light-color);
+  color: white;
+}
