@@ -1,9 +1,9 @@
 import React from "react";
 
-import "../../App.css";
+import backdropStyle from "./Backdrop.module.css";
 
 const Backdrop = () => {
-  return <div className="backdrop"></div>;
+  return <div className={backdropStyle.backdrop}></div>;
 };
 
 export default Backdrop;

@@ -8,7 +8,6 @@ import DropdownMenu from "./DropdownMenu";
 import SlideMenu from "./SlideMenu";
 
 import cx from "classnames";
-import "../../App.css";
 import globalStyles from "../../Global.module.css";
 import headerStyles from "./Header.module.css";
 import cart from "../../icons/cart.svg";

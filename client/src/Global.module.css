@@ -2,6 +2,12 @@
   height: 40px;
 }
 
+.backIcon {
+  padding-left: 10px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
 .btn {
   display: inline-block;
   width: 6.5rem;

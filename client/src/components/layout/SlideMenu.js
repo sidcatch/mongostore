@@ -5,13 +5,16 @@ import SlideMenuItem from "./SlideMenuItem";
 import Backdrop from "./Backdrop";
 
 import "../../App.css";
+import cx from "classnames";
+import slideMenuStyles from "./SlideMenu.module.css";
+import globalStyles from "../../Global.module.css";
 import backImg from "../../icons/back.svg";
 
 const SlideMenu = ({
   menuTitle,
   slideMenuItems,
   showSlideMenu,
-  hideSlideMenu
+  hideSlideMenu,
 }) => {
   useEffect(() => {
     if (showSlideMenu) document.body.style.overflow = "hidden";
@@ -34,12 +37,18 @@ const SlideMenu = ({
         unmountOnExit
         in={showSlideMenu}
         timeout={200}
-        classNames="slide-menu"
+        // classNames="slide-menu"
+        classNames={{
+          enter: slideMenuStyles["slide-menu-enter"],
+          enterActive: slideMenuStyles["slide-menu-enter-active"],
+          exit: slideMenuStyles["slide-menu-exit"],
+          exitActive: slideMenuStyles["slide-menu-exit-active"],
+        }}
       >
-        <div className="slide-menu">
-          <span className="slide-menu-title">
+        <div className={slideMenuStyles["slide-menu"]}>
+          <span className={slideMenuStyles.slideMenuTitle}>
             <img
-              className="medium-icon back-icon"
+              className={cx(globalStyles.mediumIcon, globalStyles.backIcon)}
               src={backImg}
               alt="back"
               onClick={() => {
@@ -49,7 +58,7 @@ const SlideMenu = ({
             {menuTitle}
           </span>
 
-          <ul className="slide-menu-list">
+          <ul className={slideMenuStyles.slideMenuList}>
             {slideMenuItems.map(({ title, icon, click, link }, index) => (
               <SlideMenuItem
                 title={title}
