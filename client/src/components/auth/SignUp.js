@@ -14,29 +14,29 @@ import close from "../../icons/close.svg";
 const SignUp = ({ isAuthenticated, loading, signup }) => {
   const [formState, setFormState] = useState({
     showContinueButton: true,
-    showOnlyMobileField: true,
+    showOnlyMobileInputField: true,
     mobile: "",
     mobileError: null,
     password: "",
     password2: "",
     passwordError: null,
     oneTimePassword: "",
-    otpError: null
+    otpError: null,
   });
 
   const {
     showContinueButton,
-    showOnlyMobileField,
+    showOnlyMobileInputField,
     mobile,
     password,
     password2,
     mobileError,
     passwordError,
     oneTimePassword,
-    otpError
+    otpError,
   } = formState;
 
-  const onChange = e => {
+  const onChange = (e) => {
     let nextFormState = { ...formState, [e.target.name]: e.target.value };
 
     if (e.target.name === "mobile") {
@@ -48,27 +48,27 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
     setFormState(nextFormState);
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (showOnlyMobileField) {
+    if (showOnlyMobileInputField) {
       //axios
       const config = {
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       };
       try {
         setFormState({ ...formState, showContinueButton: false });
         await axios.post("/auth/receiveotp", { mobile }, config);
-        setFormState({ ...formState, showOnlyMobileField: false });
+        setFormState({ ...formState, showOnlyMobileInputField: false });
       } catch (err) {
         const errors = err.response.data.errors;
 
         console.log(errors);
         if (errors) {
           let nextFormState = { ...formState };
-          errors.forEach(error => {
+          errors.forEach((error) => {
             //We show only one mobile error at a time
             if (error.param === "mobile") nextFormState.mobileError = error.msg;
           });
@@ -79,7 +79,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
       if (password !== password2) {
         setFormState({
           ...formState,
-          passwordError: "Passwords do not match"
+          passwordError: "Passwords do not match",
         });
       } else {
         signup(formState, setFormState);
@@ -91,9 +91,9 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
 
   let content = null;
 
-  if (showOnlyMobileField) {
+  if (showOnlyMobileInputField) {
     content = (
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="error-container ml-point5">
           <small>{mobileError}</small>
         </div>
@@ -103,13 +103,17 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             placeholder="Mobile number"
             name="mobile"
             value={mobile}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             /* required */
           />
         </div>
-        {showContinueButton && (
+        {showContinueButton ? (
           <div className="mt-point5">
             <input type="submit" className="btn btn-primary" value="Continue" />
+          </div>
+        ) : (
+          <div className="flex-center  mt-2">
+            <Spinner />
           </div>
         )}
       </form>
@@ -120,7 +124,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
         <Spinner />
       </div>
     ) : (
-      <form className="form" onSubmit={e => onSubmit(e)}>
+      <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="error-container ml-point5">
           <small>{mobileError}</small>
         </div>
@@ -131,7 +135,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             placeholder="Mobile number"
             name="mobile"
             value={mobile}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             readOnly
             /* required */
           />
@@ -145,7 +149,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             placeholder="Enter OTP sent to Mobile"
             name="oneTimePassword"
             value={oneTimePassword}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             /* required */
           />
         </div>
@@ -158,7 +162,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             /* minlenth="3" */
           />
         </div>
@@ -168,7 +172,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             placeholder="Confirm Password"
             name="password2"
             value={password2}
-            onChange={e => onChange(e)}
+            onChange={(e) => onChange(e)}
             /* minlenth="3" */
           />
         </div>
@@ -201,16 +205,16 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
 
 SignUp.propTypes = {
   signup: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.token !== null,
-  loading: state.auth.loading
+  loading: state.auth.loading,
 });
 
 const mapDispatchToProps = {
-  signup
+  signup,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

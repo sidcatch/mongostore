@@ -16,11 +16,7 @@ const getRandomInt = require("../util/getRandomInt");
 //@access Public
 router.post(
   "/receiveotp",
-  [
-    check("mobile", "Mobile number is required")
-      .not()
-      .isEmpty()
-  ],
+  [check("mobile", "Mobile number is required").not().isEmpty()],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -33,12 +29,12 @@ router.post(
 
       if (profile) {
         return res.status(400).json({
-          errors: [{ param: "mobile", msg: "Mobile number already in use" }]
+          errors: [{ param: "mobile", msg: "Mobile number already in use" }],
         });
       }
 
       let oneTimePassword = getRandomInt(100, 999);
-      //console.log("Generated OTP: " + oneTimePassword);
+      console.log("Generated OTP: " + oneTimePassword);
 
       let mobileWithOTP = await MobileWithOTP.findOne({ mobile });
 
@@ -63,16 +59,12 @@ router.post(
 router.post(
   "/signup",
   [
-    check("mobile", "Mobile number is required")
-      .not()
-      .isEmpty(),
-    check("oneTimePassword", "OTP is required")
-      .not()
-      .isEmpty(),
+    check("mobile", "Mobile number is required").not().isEmpty(),
+    check("oneTimePassword", "OTP is required").not().isEmpty(),
     check(
       "password",
       "Please enter a password with 3 or more characters"
-    ).isLength({ min: 3 })
+    ).isLength({ min: 3 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -88,7 +80,7 @@ router.post(
 
       if (profile) {
         return res.status(400).json({
-          errors: [{ param: "mobile", msg: "Mobile number already in use" }]
+          errors: [{ param: "mobile", msg: "Mobile number already in use" }],
         });
       }
 
@@ -96,13 +88,13 @@ router.post(
 
       if (!mobileWithOTP) {
         return res.status(400).json({
-          errors: [{ param: "oneTimePassword", msg: "OTP not found" }]
+          errors: [{ param: "oneTimePassword", msg: "OTP not found" }],
         });
       }
 
       if (mobileWithOTP.oneTimePassword != oneTimePassword) {
         return res.status(400).json({
-          errors: [{ param: "oneTimePassword", msg: "Invalid OTP" }]
+          errors: [{ param: "oneTimePassword", msg: "Invalid OTP" }],
         });
       }
       mobileWithOTP.remove();
@@ -116,8 +108,8 @@ router.post(
 
       const payload = {
         profile: {
-          id: profile.id
-        }
+          id: profile.id,
+        },
       };
 
       jwt.sign(
@@ -145,9 +137,7 @@ router.post(
     check("mobileOrEmail", "Email or mobile number is required")
       .not()
       .isEmpty(),
-    check("password", "Password is required")
-      .not()
-      .isEmpty()
+    check("password", "Password is required").not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -171,7 +161,7 @@ router.post(
       }
       if (!profile)
         return res.status(400).json({
-          errors: [{ param: "mobileOrEmail", msg: "Invalid Credentials" }]
+          errors: [{ param: "mobileOrEmail", msg: "Invalid Credentials" }],
         });
 
       const isMatch = await bycrypt.compare(password, profile.password);
@@ -183,8 +173,8 @@ router.post(
 
       const payload = {
         profile: {
-          id: profile.id
-        }
+          id: profile.id,
+        },
       };
 
       jwt.sign(

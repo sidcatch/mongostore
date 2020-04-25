@@ -6,25 +6,25 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOAD_TOKEN,
-  LOGOUT
+  LOGOUT,
 } from "./types";
 import axios from "axios";
 
 //Load token from localStorage
-export const loadToken = () => dispatch => {
+export const loadToken = () => (dispatch) => {
   if (localStorage.token)
     dispatch({
       type: LOAD_TOKEN,
-      payload: { token: localStorage.getItem("token") }
+      payload: { token: localStorage.getItem("token") },
     });
 };
 
 //Signup User
-export const signup = (formState, setFormState) => async dispatch => {
+export const signup = (formState, setFormState) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   try {
@@ -46,7 +46,7 @@ export const signup = (formState, setFormState) => async dispatch => {
     console.log(errors);
     if (errors) {
       let nextFormState = { ...formState };
-      errors.forEach(error => {
+      errors.forEach((error) => {
         //We show only one mobile or password or OTP error at a time
         if (error.param === "mobile") nextFormState.mobileError = error.msg;
         else if (error.param === "password")
@@ -62,11 +62,11 @@ export const signup = (formState, setFormState) => async dispatch => {
 };
 
 //Login User
-export const login = (formState, setFormState) => async dispatch => {
+export const login = (formState, setFormState) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   };
 
   try {
@@ -88,8 +88,8 @@ export const login = (formState, setFormState) => async dispatch => {
     console.log(errors);
     if (errors) {
       let nextFormState = { ...formState };
-      errors.forEach(error => {
-        //We show only one mobileOrEmail or password or OTP error at a time
+      errors.forEach((error) => {
+        //Show only one mobileOrEmail or password or OTP error at a time
         if (error.param === "mobileOrEmail")
           nextFormState.mobileOrEmailError = error.msg;
         else if (error.param === "password")
@@ -103,7 +103,7 @@ export const login = (formState, setFormState) => async dispatch => {
 };
 
 ///Logout User
-export const logout = () => async dispatch => {
+export const logout = () => async (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
 };

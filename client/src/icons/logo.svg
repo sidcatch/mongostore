@@ -16,7 +16,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="MedistoreLogo.svg">
+   sodipodi:docname="logo.svg">
   <defs
      id="defs2">
     <linearGradient
@@ -51,7 +51,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="290.13152"
+     inkscape:cx="272.45385"
      inkscape:cy="279.94954"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -70,7 +70,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -100,32 +100,28 @@
            height="111.11678"
            x="435.37573"
            y="401.27078" /></flowRegion><flowPara
-         id="flowPara859" /></flowRoot>    <g
-       id="g835"
-       transform="matrix(1.7192996,0,0,1.7192996,-106.53879,112.01536)">
-      <path
-         sodipodi:nodetypes="ccczccsccsccsccsccczc"
-         inkscape:connector-curvature="0"
-         id="path21"
-         d="m 95.068973,33.252222 c -0.687642,0.0042 -1.708909,1.264112 -1.708909,1.264112 L 64.104223,85.233972 c 0,0 -0.700786,2.760121 -0.09317,3.897151 0.607613,1.13703 3.239919,2.055449 3.239919,2.055449 l 21.147067,-0.03095 c 0,0 2.317975,-0.600157 2.834671,-1.543925 0.50747,-0.926917 -0.22252,-3.162402 -0.22252,-3.162402 L 78.703164,65.86364 c 0,0 -0.385855,-1.524128 -0.09083,-2.193996 0.210803,-0.478638 1.200348,-1.010422 1.200348,-1.010422 l 13.265786,-0.0597 c 0,0 0.958597,0.301108 1.394599,0.543694 0.388488,0.21615 1.066781,0.800481 1.066781,0.800481 l 15.553912,26.62441 c 0,0 0.77395,0.716282 1.25968,0.734582 0.52925,0.01994 1.42888,-0.694857 1.42888,-0.694857 L 121.54083,77.304447 96.709489,34.224692 c 0,0 -0.952866,-0.976692 -1.640509,-0.97247 z"
-         style="fill:#abff4f;fill-opacity:1;stroke:#000000;stroke-width:0.66500002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <path
-         style="fill:#f25797;fill-opacity:1;stroke:#000000;stroke-width:0.66500002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m 112.44801,61.534501 15.71858,-27.270084 c 0,0 0.95287,-0.976692 1.64051,-0.97247 h 4e-5 c 0.68764,0.0042 1.70891,1.264112 1.70891,1.264112 l 29.25584,50.717638 c 0,0 0.70078,2.760121 0.0932,3.897151 -0.60761,1.13703 -3.23992,2.055449 -3.23992,2.055449 l -21.14707,-0.03095 c 0,0 -2.31797,-0.600157 -2.83467,-1.543925 -0.50747,-0.926917 0.22252,-3.162402 0.22252,-3.162402 l 12.307,-20.585655 c 0,0 0.38585,-1.524128 0.0908,-2.193996 -0.21081,-0.478638 -1.20035,-1.010422 -1.20035,-1.010422 l -13.26579,-0.0597 c 0,0 -0.95859,0.301108 -1.3946,0.543694 -0.38848,0.21615 -1.06678,0.800481 -1.06678,0.800481 l -7.81018,13.36908 z"
-         id="path831"
-         inkscape:connector-curvature="0"
-         sodipodi:nodetypes="cczccczccsccsccsccc" />
-      <text
-         id="text863"
-         y="105.20359"
-         x="66.78907"
-         style="font-style:normal;font-weight:normal;font-size:15.33282852px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f25797;fill-opacity:1;stroke:none;stroke-width:0.38332069"
-         xml:space="preserve"><tspan
-           style="fill:#f25797;fill-opacity:1;stroke-width:0.38332069"
-           y="105.20359"
-           x="66.78907"
-           id="tspan861"
-           sodipodi:role="line">MEDISTORE</tspan></text>
-    </g>
+         id="flowPara859" /></flowRoot>    <path
+       style="fill:#abff4f;fill-opacity:1;stroke:#000000;stroke-width:1.14333427;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 56.913257,169.18589 c -1.182262,0.007 -2.938126,2.17339 -2.938126,2.17339 L 3.675575,258.55809 c 0,0 -1.2048611,4.74548 -0.1601872,6.70037 1.0446688,1.9549 5.5703915,3.53394 5.5703915,3.53394 l 36.3581437,-0.0532 c 0,0 3.985294,-1.03185 4.873649,-2.65447 0.872493,-1.59364 -0.382579,-5.43711 -0.382579,-5.43711 L 28.775528,225.25469 c 0,0 -0.6634,-2.62043 -0.156164,-3.77214 0.362434,-0.82292 2.063758,-1.73721 2.063758,-1.73721 l 22.807861,-0.10265 c 0,0 1.648115,0.5177 2.397733,0.93478 0.667928,0.37162 1.834116,1.37626 1.834116,1.37626 l 26.741835,45.77534 c 0,0 1.330652,1.2315 2.165767,1.26297 0.90994,0.0343 2.456673,-1.19467 2.456673,-1.19467 l 13.339203,-22.87251 -42.692514,-74.067 c 0,0 -1.638262,-1.67923 -2.820527,-1.67197 z"
+       id="path21"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccczccsccsccsccsccczc" />
+    <path
+       sodipodi:nodetypes="cczccczccsccsccsccc"
+       inkscape:connector-curvature="0"
+       id="path831"
+       d="m 86.793029,217.8116 27.024951,-46.88544 c 0,0 1.63827,-1.67923 2.82053,-1.67197 h 6e-5 c 1.18226,0.007 2.93813,2.17339 2.93813,2.17339 l 50.29956,87.19881 c 0,0 1.20485,4.74548 0.16023,6.70037 -1.04466,1.9549 -5.57039,3.53394 -5.57039,3.53394 l -36.35815,-0.0532 c 0,0 -3.98528,-1.03185 -4.87364,-2.65447 -0.8725,-1.59364 0.38257,-5.43711 0.38257,-5.43711 l 21.15942,-35.39291 c 0,0 0.6634,-2.62043 0.15612,-3.77214 -0.36245,-0.82292 -2.06376,-1.73722 -2.06376,-1.73722 l -22.80787,-0.10264 c 0,0 -1.64811,0.5177 -2.39774,0.93478 -0.66791,0.37162 -1.83411,1.37626 -1.83411,1.37626 l -13.42804,22.98546 z"
+       style="fill:#f25797;fill-opacity:1;stroke:#000000;stroke-width:1.14333427;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:26.36172676px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#f25797;fill-opacity:1;stroke:none;stroke-width:0.65904313"
+       x="12.567971"
+       y="290.75366"
+       id="text863"><tspan
+         sodipodi:role="line"
+         id="tspan861"
+         x="12.567971"
+         y="290.75366"
+         style="fill:#f25797;fill-opacity:1;stroke-width:0.65904313">Mongostore</tspan></text>
   </g>
 </svg>
