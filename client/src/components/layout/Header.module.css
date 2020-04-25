@@ -1,0 +1,28 @@
+.logoContainer {
+  flex: 1;
+}
+
+.logo {
+  height: 50px;
+}
+
+.slideMenuIcon {
+  cursor: pointer;
+  padding-right: 0.5rem;
+  display: none;
+}
+
+.cart {
+  height: 50px;
+  padding-left: 2rem;
+}
+
+@media screen and (max-width: 500px) {
+  .slideMenuIcon {
+    display: block;
+  }
+
+  .cart {
+    padding-left: 1rem;
+  }
+}

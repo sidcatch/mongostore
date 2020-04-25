@@ -61,18 +61,6 @@ header {
   height: 10vh;
 }
 
-.logo {
-  height: 50px;
-}
-.cart {
-  height: 50px;
-  padding-left: 2rem;
-}
-
-.logo-container {
-  flex: 1;
-}
-
 .form-container {
   width: 100%;
   margin: auto;
@@ -171,11 +159,7 @@ header {
 .slide-menu-title {
   padding-right: 0.3rem;
 }
-.slide-menu-icon {
-  cursor: pointer;
-  padding-right: 0.5rem;
-  display: none;
-}
+
 .slide-menu {
   display: flex;
   flex-direction: column;
@@ -314,9 +298,6 @@ header {
   .dropdown-menu {
     display: none;
   }
-  .slide-menu-icon {
-    display: block;
-  }
 
   .prompt {
     top: 0px;
@@ -328,16 +309,6 @@ header {
   }
   .btn {
     display: inline-block;
-    width: 6.5rem;
-    background: var(--primary-color);
-    color: var(--dark-color);
-    padding: 0.4rem 1.3rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    outline: none;
-  }
-  .btn {
     width: 5rem;
     background: var(--primary-color);
     color: var(--dark-color);
@@ -346,9 +317,5 @@ header {
     border: none;
     cursor: pointer;
     outline: none;
-  }
-
-  .cart {
-    padding-left: 1rem;
   }
 }

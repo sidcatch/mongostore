@@ -7,7 +7,10 @@ import PropTypes from "prop-types";
 import DropdownMenu from "./DropdownMenu";
 import SlideMenu from "./SlideMenu";
 
+import cx from "classnames";
 import "../../App.css";
+import globalStyles from "../../Global.module.css";
+import headerStyles from "./Header.module.css";
 import cart from "../../icons/cart.svg";
 import logo from "../../icons/logo.svg";
 import slideMenuIcon from "../../icons/slide-menu.svg";
@@ -19,12 +22,12 @@ const Header = ({ isAuthenticated, logout }) => {
   const dropDownItems = [
     { title: "Profile", icon: profileImg },
     { title: "Orders", icon: shoppingBagImg },
-    { title: "Logout", icon: logoutImg, click: () => logout() }
+    { title: "Logout", icon: logoutImg, click: () => logout() },
   ];
   const slideMenuItems = [
     { title: "Profile", icon: profileImg },
     { title: "Orders", icon: shoppingBagImg },
-    { title: "Logout", icon: logoutImg, click: () => logout() }
+    { title: "Logout", icon: logoutImg, click: () => logout() },
   ];
 
   const [showSlideMenu, setSlideMenu] = useState(false);
@@ -34,31 +37,27 @@ const Header = ({ isAuthenticated, logout }) => {
   return (
     <header>
       <img
-        className="slide-menu-icon medium-icon"
+        className={cx(headerStyles.slideMenuIcon, globalStyles.mediumIcon)}
         src={slideMenuIcon}
         alt="Slide"
         onClick={() => {
           setSlideMenu(true);
         }}
       />
-      <div className="logo-container">
-        <img className="logo" src={logo} alt="logo" />
+      <div className={headerStyles.logoContainer}>
+        <img className={headerStyles.logo} src={logo} alt="logo" />
       </div>
 
       {isAuthenticated ? (
-        <div /* className="mr-2" */>
-          <DropdownMenu menuTitle="My Account" dropDownItems={dropDownItems} />
-        </div>
+        <DropdownMenu menuTitle="My Account" dropDownItems={dropDownItems} />
       ) : (
-        <div /* className="mr-2" */>
-          <Link to={"/login"} style={{ textDecoration: "none" }}>
-            <button className="btn btn-primary">Login</button>
-          </Link>
-        </div>
+        <Link to={"/login"} style={{ textDecoration: "none" }}>
+          <button className={globalStyles.btn}>Login</button>
+        </Link>
       )}
 
-      <div className="cart-container">
-        <img className="cart" src={cart} alt="cart" />
+      <div>
+        <img className={headerStyles.cart} src={cart} alt="cart" />
       </div>
       <SlideMenu
         menuTitle=""
@@ -72,14 +71,14 @@ const Header = ({ isAuthenticated, logout }) => {
 
 Header.propTypes = {
   isAuthenticated: PropTypes.bool,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.token !== null
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.token !== null,
 });
 
 const mapDispatchToProps = {
-  logout
+  logout,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
