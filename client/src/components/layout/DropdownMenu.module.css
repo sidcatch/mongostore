@@ -1,0 +1,62 @@
+.dropdownMenu {
+  position: relative;
+  cursor: pointer;
+}
+.dropdownMenu:hover {
+  color: var(--primary-color);
+}
+
+.dropdownMenuTitle {
+  padding-right: 0.3rem;
+}
+
+.dropdownCloseOpenIcon {
+  padding-top: 0.5rem;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2.5rem;
+  width: 150px;
+  left: 50%;
+  margin-left: -75px;
+  border-top: 1px solid var(--light-color);
+  border-left: 1px solid var(--light-color);
+  border-right: 1px solid var(--light-color);
+  background-color: white;
+}
+
+.dropdown-enter {
+  opacity: 0;
+}
+.dropdown-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.dropdown-exit {
+  opacity: 1;
+}
+.dropdown-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.dropdownArrowContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: absolute;
+  width: 120px;
+  height: 1.3rem;
+  left: 50%;
+  margin-left: -60px;
+  top: -1.3rem;
+}
+
+@media screen and (max-width: 500px) {
+  .dropdownMenu {
+    display: none;
+  }
+}

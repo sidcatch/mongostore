@@ -3,7 +3,9 @@ import { CSSTransition } from "react-transition-group";
 
 import DropdownItem from "./DropdownItem";
 
-import "../../App.css";
+import cx from "classnames";
+import dropDownMenuStyles from "./DropdownMenu.module.css";
+import globalStyles from "../../Global.module.css";
 import dropdownCloseImg from "../../icons/dropdown-close.svg";
 import dropdownOpenImg from "../../icons/dropdown-open.svg";
 import dropdownArrowImg from "../../icons/dropdown-arrow.svg";
@@ -20,22 +22,25 @@ const DropdownMenu = ({ menuTitle, dropDownItems }) => {
     setDropdownState({ ...dropdownState, showDropdown: false });
   };
   const onClick = () => {
-    setDropdownState(prevState => ({
+    setDropdownState((prevState) => ({
       ...prevState,
-      showDropdown: !prevState.showDropdown
+      showDropdown: !prevState.showDropdown,
     }));
   };
 
   return (
     <div
-      className="dropdown-menu"
+      className={dropDownMenuStyles.dropdownMenu}
       onMouseEnter={() => onMouseEnter()}
       onMouseLeave={() => onMouseLeave()}
       onClick={() => onClick()}
     >
-      <span className="dropdown-menu-title">{menuTitle}</span>
+      <span className={dropDownMenuStyles.dropdownMenuTitle}>{menuTitle}</span>
       <img
-        className="small-icon dropdown-close-open-icon"
+        className={cx(
+          dropDownMenuStyles.dropdownCloseOpenIcon,
+          globalStyles.smallIcon
+        )}
         src={showDropdown ? dropdownOpenImg : dropdownCloseImg}
         alt="down-arrow"
       />
@@ -45,12 +50,18 @@ const DropdownMenu = ({ menuTitle, dropDownItems }) => {
         unmountOnExit
         in={showDropdown}
         timeout={200}
-        classNames="dropdown"
+        //classNames="dropdown"
+        classNames={{
+          enter: dropDownMenuStyles["dropdown-enter"],
+          enterActive: dropDownMenuStyles["dropdown-enter-active"],
+          exit: dropDownMenuStyles["dropdown-exit"],
+          exitActive: dropDownMenuStyles["dropdown-exit-active"],
+        }}
       >
-        <ul className="dropdown">
-          <div className="dropdown-arrow-container">
+        <ul className={dropDownMenuStyles["dropdown"]}>
+          <div className={dropDownMenuStyles.dropdownArrowContainer}>
             <img
-              className="dropdown-arrow small-icon"
+              className={globalStyles.smallIcon}
               src={dropdownArrowImg}
               alt="arrow"
             />

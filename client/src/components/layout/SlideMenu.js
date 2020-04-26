@@ -69,6 +69,15 @@ const SlideMenu = ({
               />
             ))}
           </ul>
+
+          <ul className="test-list">
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+            <li>Hey</li>
+          </ul>
         </div>
       </CSSTransition>
     </Fragment>
