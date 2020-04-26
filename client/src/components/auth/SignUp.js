@@ -8,7 +8,9 @@ import axios from "axios";
 import Backdrop from "../layout/Backdrop";
 import Spinner from "../graphics/Spinner";
 
-import "../../App.css";
+import cx from "classnames";
+import formStyles from "../Form.module.css";
+import globalStyles from "../../Global.module.css";
 import close from "../../icons/close.svg";
 
 const SignUp = ({ isAuthenticated, loading, signup }) => {
@@ -93,11 +95,13 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
 
   if (showOnlyMobileInputField) {
     content = (
-      <form className="form" onSubmit={(e) => onSubmit(e)}>
-        <div className="error-container ml-point5">
+      <form className={formStyles.form} onSubmit={(e) => onSubmit(e)}>
+        <div
+          className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}
+        >
           <small>{mobileError}</small>
         </div>
-        <div className="form-group">
+        <div>
           <input
             type="text"
             placeholder="Mobile number"
@@ -108,11 +112,15 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
           />
         </div>
         {showContinueButton ? (
-          <div className="mt-point5">
-            <input type="submit" className="btn btn-primary" value="Continue" />
+          <div className={globalStyles["mt-point5"]}>
+            <input
+              type="submit"
+              className={globalStyles.btn}
+              value="Continue"
+            />
           </div>
         ) : (
-          <div className="flex-center  mt-2">
+          <div className={cx(globalStyles.flexCenter, globalStyles["mt-2"])}>
             <Spinner />
           </div>
         )}
@@ -120,17 +128,19 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
     );
   } else {
     content = loading ? (
-      <div className="flex-center  mt-2">
+      <div className={cx(globalStyles.flexCenter, globalStyles["mt-2"])}>
         <Spinner />
       </div>
     ) : (
-      <form className="form" onSubmit={(e) => onSubmit(e)}>
-        <div className="error-container ml-point5">
+      <form className={formStyles.form} onSubmit={(e) => onSubmit(e)}>
+        <div
+          className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}
+        >
           <small>{mobileError}</small>
         </div>
-        <div className="form-group">
+        <div>
           <input
-            className="read-only"
+            className={globalStyles.readOnly}
             type="text"
             placeholder="Mobile number"
             name="mobile"
@@ -140,10 +150,12 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             /* required */
           />
         </div>
-        <div className="error-container ml-point5">
+        <div
+          className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}
+        >
           <small>{otpError}</small>
         </div>
-        <div className="form-group">
+        <div>
           <input
             type="text"
             placeholder="Enter OTP sent to Mobile"
@@ -153,10 +165,12 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             /* required */
           />
         </div>
-        <div className="error-container ml-point5">
+        <div
+          className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}
+        >
           <small>{passwordError}</small>
         </div>
-        <div className="form-group">
+        <div>
           <input
             type="password"
             placeholder="Password"
@@ -166,7 +180,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             /* minlenth="3" */
           />
         </div>
-        <div className="form-group">
+        <div>
           <input
             type="password"
             placeholder="Confirm Password"
@@ -176,7 +190,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
             /* minlenth="3" */
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Sign Up" />
+        <input type="submit" className={globalStyles.btn} value="Sign Up" />
       </form>
     );
   }
@@ -187,15 +201,17 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
         <Backdrop />
       </Link>
 
-      <div className="prompt">
+      <div className={globalStyles.prompt}>
         <Link to={"/"}>
-          <div className="close-container">
-            <img className="close" src={close} alt="close"></img>
+          <div className={globalStyles.closeContainer}>
+            <img className={globalStyles.close} src={close} alt="close"></img>
           </div>
         </Link>
 
-        <section className="form-container">
-          <h1 className="large mt-1point5">Sign Up</h1>
+        <section className={formStyles.formContainer}>
+          <h1 className={cx(globalStyles.large, globalStyles["mt-1point5"])}>
+            Sign Up
+          </h1>
           {content}
         </section>
       </div>

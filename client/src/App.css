@@ -61,34 +61,10 @@ header {
   height: 10vh;
 }
 
-.form-container {
-  width: 100%;
-  margin: auto;
-  padding: 0 2rem;
-}
-
 .large {
   font-size: 3rem;
   color: var(--primary-color);
   text-align: center;
-}
-
-.form {
-  margin-top: 1rem;
-}
-.form input[type="text"],
-.form input[type="email"],
-.form input[type="password"],
-.form input[type="date"],
-.form select,
-.form textarea {
-  width: 100%;
-  padding: 0.4rem;
-  font-size: 1.3rem;
-  border: 1px solid var(--light-color);
-  margin: 0.5rem 0;
-  border-radius: 5px;
-  outline: none;
 }
 
 .btn {
@@ -136,13 +112,7 @@ header {
   margin: 0.5rem;
   float: right;
 }
-.spinner {
-  height: 150px;
-}
 
-.error-container {
-  color: red;
-}
 .read-only {
   color: var(--light-color);
 }

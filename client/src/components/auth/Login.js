@@ -7,7 +7,9 @@ import PropTypes from "prop-types";
 import Backdrop from "../layout/Backdrop";
 import Spinner from "../graphics/Spinner";
 
-import "../../App.css";
+import cx from "classnames";
+import formStyles from "../Form.module.css";
+import globalStyles from "../../Global.module.css";
 import close from "../../icons/close.svg";
 
 const Login = ({ isAuthenticated, loading, login }) => {
@@ -15,17 +17,17 @@ const Login = ({ isAuthenticated, loading, login }) => {
     mobileOrEmail: "",
     mobileOrEmailError: null,
     password: "",
-    passwordError: null
+    passwordError: null,
   });
 
   const {
     mobileOrEmail,
     mobileOrEmailError,
     password,
-    passwordError
+    passwordError,
   } = formState;
 
-  const onChange = e => {
+  const onChange = (e) => {
     let nextFormState = { ...formState, [e.target.name]: e.target.value };
 
     if (e.target.name === "mobileOrEmail") {
@@ -35,7 +37,7 @@ const Login = ({ isAuthenticated, loading, login }) => {
     setFormState(nextFormState);
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     login(formState, setFormState);
@@ -44,44 +46,46 @@ const Login = ({ isAuthenticated, loading, login }) => {
   if (isAuthenticated) return <Redirect to="/" />;
 
   let content = loading ? (
-    <div className="flex-center  mt-2">
+    <div className={cx(globalStyles.flexCenter, globalStyles["mt-2"])}>
       <Spinner />
     </div>
   ) : (
-    <form className="form" onSubmit={e => onSubmit(e)}>
-      <div className="error-container ml-point5">
+    <form className={formStyles.form} onSubmit={(e) => onSubmit(e)}>
+      <div className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}>
         <small>{mobileOrEmailError}</small>
       </div>
-      <div className="form-group">
+      <div>
         <input
           type="text"
           placeholder="Enter Mobile or Email"
           name="mobileOrEmail"
           value={mobileOrEmail}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           /* required */
         />
       </div>
-      <div className="error-container ml-point5">
+      <div className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}>
         <small>{passwordError}</small>
       </div>
-      <div className="form-group">
+      <div>
         <input
           type="password"
           placeholder="Password"
           name="password"
           value={password}
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
           /* minlenth="3" */
         />
       </div>
-      <div className="mt-point5">
-        <input type="submit" className="btn btn-primary" value="Login" />
+      <div className={globalStyles["mt-point5"]}>
+        <input type="submit" className={globalStyles.btn} value="Login" />
       </div>
 
       <Link to={"/signup"} style={{ textDecoration: "none" }}>
-        <div className="mt-1">
-          <small className="small-link">New User? Create an account</small>
+        <div className={globalStyles["mt-1"]}>
+          <small className={globalStyles.smallLink}>
+            New User? Create an account
+          </small>
         </div>
       </Link>
     </form>
@@ -93,15 +97,17 @@ const Login = ({ isAuthenticated, loading, login }) => {
         <Backdrop />
       </Link>
 
-      <div className="prompt">
+      <div className={globalStyles.prompt}>
         <Link to={"/"}>
-          <div className="close-container">
-            <img className="close" src={close} alt="close"></img>
+          <div className={globalStyles.closeContainer}>
+            <img className={globalStyles.close} src={close} alt="close"></img>
           </div>
         </Link>
 
-        <section className="form-container">
-          <h1 className="large mt-1point5">Login</h1>
+        <section className={formStyles.formContainer}>
+          <h1 className={cx(globalStyles.large, globalStyles["mt-1point5"])}>
+            Login
+          </h1>
           {content}
         </section>
       </div>
@@ -111,16 +117,16 @@ const Login = ({ isAuthenticated, loading, login }) => {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.token !== null,
-  loading: state.auth.loading
+  loading: state.auth.loading,
 });
 
 const mapDispatchToProps = {
-  login
+  login,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

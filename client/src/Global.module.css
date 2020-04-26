@@ -1,3 +1,18 @@
+:root {
+  --primary-color: #f25797;
+  --secondary-color: #abff4f;
+  --dark-color: #1c0f13;
+  --light-color: #6e7e85;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
+.large {
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
 .mediumIcon {
   height: 40px;
 }
@@ -28,6 +43,63 @@
   color: white;
 }
 
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-1point5 {
+  margin-top: 1.5rem;
+}
+.mt-point5 {
+  margin-top: 0.5rem;
+}
+
+.ml-point5 {
+  margin-left: 0.5rem;
+}
+
+.smallLink {
+  color: black;
+}
+.smallLink:hover {
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.prompt {
+  position: fixed;
+
+  width: 400px;
+  height: 430px;
+  top: 50%;
+  left: 50%;
+  margin-top: -200px;
+  margin-left: -200px;
+
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+}
+
+.close {
+  height: 25px;
+}
+.closeContainer {
+  margin: 0.5rem;
+  float: right;
+}
+
+.readOnly {
+  color: var(--light-color);
+}
+
 @media screen and (max-width: 500px) {
   .btn {
     display: inline-block;
@@ -39,5 +111,14 @@
     border: none;
     cursor: pointer;
     outline: none;
+  }
+
+  .prompt {
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    margin: 0px;
+    border-radius: 0px;
   }
 }

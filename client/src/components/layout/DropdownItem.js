@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "../../App.css";
 import dropdownItemStyles from "./DropdownItem.module.css";
 import globalStyles from "../../Global.module.css";
 
