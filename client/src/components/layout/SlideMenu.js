@@ -70,7 +70,7 @@ const SlideMenu = ({
             ))}
           </ul>
 
-          <ul className="test-list">
+          <ul className={globalStyles.testList}>
             <li>Hey</li>
             <li>Hey</li>
             <li>Hey</li>
