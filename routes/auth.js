@@ -45,7 +45,7 @@ router.post(
 
       //sendSMS(parseInt(mobile), `Your OTP is ${oneTimePassword}`);
 
-      res.json({ msg: "OTP sent" });
+      res.status(200).json({ msg: "OTP sent" });
     } catch (err) {
       console.log(err.message);
       res.status(500).send("server error");
@@ -118,7 +118,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.status(200), json({ token });
         }
       );
     } catch (err) {
@@ -183,7 +183,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.status(200).json({ token });
         }
       );
     } catch (err) {

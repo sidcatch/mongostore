@@ -2,31 +2,27 @@ const mongoose = require("mongoose");
 
 const ProfileSchema = new mongoose.Schema({
   name: {
-    type: String
+    type: String,
   },
   email: {
-    type: String
+    type: String,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   mobile: {
     type: Number,
-    required: true
+    required: true,
   },
-  addresses: [
-    {
-      type: String
-    }
-  ],
   defaultAddress: {
-    type: mongoose.Schema.Types.ObjectId
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Address",
   },
   dateJoined: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("profile", ProfileSchema);

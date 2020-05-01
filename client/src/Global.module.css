@@ -32,7 +32,7 @@
   width: 6.5rem;
   background: var(--primary-color);
   color: var(--dark-color);
-  padding: 0.4rem 1.3rem;
+  padding: 0.4rem 0.3rem;
   font-size: 1rem;
   border: none;
   cursor: pointer;
@@ -110,7 +110,7 @@
     width: 5rem;
     background: var(--primary-color);
     color: var(--dark-color);
-    padding: 0.4rem 1.3rem;
+    padding: 0.4rem 0.3rem;
     font-size: 1rem;
     border: none;
     cursor: pointer;
