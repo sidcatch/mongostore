@@ -14,24 +14,27 @@ import close from "../../icons/close.svg";
 
 const Login = ({ isAuthenticated, loading, login }) => {
   const [formState, setFormState] = useState({
-    mobileOrEmail: "",
-    mobileOrEmailError: null,
+    mobile: "",
+    mobileError: null,
     password: "",
     passwordError: null,
   });
 
-  const {
-    mobileOrEmail,
-    mobileOrEmailError,
-    password,
-    passwordError,
-  } = formState;
+  const { mobile, mobileError, password, passwordError } = formState;
 
   const onChange = (e) => {
+    if (e.target.name === "mobile") {
+      let validNumber = /^\+91\d*$/;
+      let hasOneCharacter = e.target.value.length === 1 ? true : false;
+
+      if (hasOneCharacter) e.target.value = "+91" + e.target.value;
+      if (!e.target.value.match(validNumber)) return;
+    }
+
     let nextFormState = { ...formState, [e.target.name]: e.target.value };
 
-    if (e.target.name === "mobileOrEmail") {
-      nextFormState.mobileOrEmailError = null;
+    if (e.target.name === "mobile") {
+      nextFormState.mobileError = null;
     } else if (e.target.name === "password") nextFormState.passwordError = null;
 
     setFormState(nextFormState);
@@ -52,14 +55,14 @@ const Login = ({ isAuthenticated, loading, login }) => {
   ) : (
     <form className={formStyles.form} onSubmit={(e) => onSubmit(e)}>
       <div className={cx(formStyles.errorContainer, globalStyles["ml-point5"])}>
-        <small>{mobileOrEmailError}</small>
+        <small>{mobileError}</small>
       </div>
       <div>
         <input
           type="text"
-          placeholder="Enter Mobile or Email"
-          name="mobileOrEmail"
-          value={mobileOrEmail}
+          placeholder="Enter mobile number"
+          name="mobile"
+          value={mobile}
           onChange={(e) => onChange(e)}
           /* required */
         />

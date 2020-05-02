@@ -154,9 +154,10 @@ router.post(
 router.post(
   "/login",
   [
-    check("mobileOrEmail", "Email or mobile number is required")
-      .not()
-      .isEmpty(),
+    check("mobile", "Mobile number is required").not().isEmpty(),
+    check("mobile", "Enter valid mobile number").isMobilePhone("en-IN", {
+      strictMode: true,
+    }),
     check("password", "Password is required").not().isEmpty(),
   ],
   async (req, res) => {
@@ -165,23 +166,22 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { mobileOrEmail, password } = req.body;
+    const { mobile, password } = req.body;
 
     try {
-      let profile = null;
+      let profile = await Profile.findOne({ mobile });
 
-      if (isNaN(mobileOrEmail)) {
+      /* if (isNaN(mobile)) {
         const email = mobileOrEmail;
 
         profile = await Profile.findOne({ email });
-      } else {
+      } else { 
         const mobile = mobileOrEmail;
-
-        profile = await Profile.findOne({ mobile });
-      }
+      profile = await Profile.findOne({ mobile });
+       }*/
       if (!profile)
         return res.status(400).json({
-          errors: [{ param: "mobileOrEmail", msg: "Invalid Credentials" }],
+          errors: [{ param: "mobile", msg: "Invalid Credentials" }],
         });
 
       const isMatch = await bycrypt.compare(password, profile.password);

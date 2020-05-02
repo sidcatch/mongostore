@@ -74,13 +74,9 @@ export const login = (formState, setFormState) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const { mobileOrEmail, password } = formState;
+    const { mobile, password } = formState;
 
-    const res = await axios.post(
-      "/auth/login",
-      { mobileOrEmail, password },
-      config
-    );
+    const res = await axios.post("/auth/login", { mobile, password }, config);
 
     localStorage.setItem("token", res.data.token);
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
@@ -91,10 +87,10 @@ export const login = (formState, setFormState) => async (dispatch) => {
     if (errors) {
       let nextFormState = { ...formState };
       errors.forEach((error) => {
-        //Show only one mobileOrEmail or password or OTP error at a time
-        if (error.param === "mobileOrEmail")
-          nextFormState.mobileOrEmailError = error.msg;
-        else if (error.param === "password")
+        //Show only one mobile or password or OTP error at a time
+        if (error.param === "mobile" && !nextFormState.mobileError)
+          nextFormState.mobileError = error.msg;
+        else if (error.param === "password" && !nextFormState.passwordError)
           nextFormState.passwordError = error.msg;
       });
       setFormState(nextFormState);

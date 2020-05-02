@@ -93,14 +93,14 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
         }
       }
     } else {
-      /* if (password !== password2) {
+      if (password !== password2) {
         setFormState({
           ...formState,
           passwordError: "Passwords do not match",
         });
-      } else { */
-      signup(formState, setFormState);
-      //}
+      } else {
+        signup(formState, setFormState);
+      }
     }
   };
 
