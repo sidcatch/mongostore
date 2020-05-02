@@ -16,7 +16,13 @@ const getRandomInt = require("../util/getRandomInt");
 //@access Public
 router.post(
   "/receiveotp",
-  [check("mobile", "Mobile number is required").not().isEmpty()],
+  [
+    // check("mobile", "Mobile number is required").not().isEmpty(),
+    // check("mobile", "not 0 or 1").matches(/[^01]/),
+    check("mobile", "Enter valid mobile number").isMobilePhone("en-IN", {
+      strictMode: true,
+    }),
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

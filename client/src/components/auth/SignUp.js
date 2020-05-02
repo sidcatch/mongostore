@@ -39,7 +39,17 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
   } = formState;
 
   const onChange = (e) => {
-    let nextFormState = { ...formState, [e.target.name]: e.target.value };
+    let validNumber = /^\+91\d*$/;
+    let hasOneCharacter = e.target.value.length === 1 ? true : false;
+
+    if (hasOneCharacter) e.target.value = "+91" + e.target.value;
+    //if (e.target.value === "+91/b") e.target.value = "";
+    if (!e.target.value.match(validNumber)) return;
+
+    let nextFormState = {
+      ...formState,
+      [e.target.name]: e.target.value,
+    };
 
     if (e.target.name === "mobile") {
       nextFormState.mobileError = null;
@@ -104,7 +114,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
         <div>
           <input
             type="text"
-            placeholder="Mobile number"
+            placeholder="Enter mobile number"
             name="mobile"
             value={mobile}
             onChange={(e) => onChange(e)}

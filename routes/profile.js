@@ -19,4 +19,9 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+//@route PUT /profile/
+//@desc edit profile
+//@access Private
+//router.put("/", auth, async)
+
 module.exports = router;
