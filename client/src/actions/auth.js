@@ -38,6 +38,7 @@ export const signup = (formState, setFormState) => async (dispatch) => {
       config
     );
 
+    console.log(res);
     localStorage.setItem("token", res.data.token);
     dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
   } catch (err) {
@@ -48,10 +49,11 @@ export const signup = (formState, setFormState) => async (dispatch) => {
       let nextFormState = { ...formState };
       errors.forEach((error) => {
         //We show only one mobile or password or OTP error at a time
-        if (error.param === "mobile") nextFormState.mobileError = error.msg;
-        else if (error.param === "password")
+        if (error.param === "mobile" && !nextFormState.mobileError)
+          nextFormState.mobileError = error.msg;
+        else if (error.param === "password" && !nextFormState.passwordError)
           nextFormState.passwordError = error.msg;
-        else if (error.param === "oneTimePassword")
+        else if (error.param === "oneTimePassword" && !nextFormState.otpError)
           nextFormState.otpError = error.msg;
       });
       setFormState(nextFormState);

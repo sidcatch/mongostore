@@ -18,7 +18,6 @@ router.post(
   "/receiveotp",
   [
     // check("mobile", "Mobile number is required").not().isEmpty(),
-    // check("mobile", "not 0 or 1").matches(/[^01]/),
     check("mobile", "Enter valid mobile number").isMobilePhone("en-IN", {
       strictMode: true,
     }),
@@ -65,12 +64,26 @@ router.post(
 router.post(
   "/signup",
   [
-    check("mobile", "Mobile number is required").not().isEmpty(),
+    //check("mobile", "Mobile number is required").not().isEmpty(),
+    check("mobile", "Enter valid mobile number").isMobilePhone("en-IN", {
+      strictMode: true,
+    }),
     check("oneTimePassword", "OTP is required").not().isEmpty(),
     check(
       "password",
-      "Please enter a password with 3 or more characters"
-    ).isLength({ min: 3 }),
+      "Please enter a password with 8 or more characters"
+    ).isLength({ min: 8 }),
+    check(
+      "password",
+      "Password should contain at least one lowercase letter"
+    ).matches(/[a-z]/),
+    check("password", "Password should contain at least one digit").matches(
+      /\d/
+    ),
+    check(
+      "password",
+      "Password should contain at least one special character"
+    ).matches(/[^a-zA-Z0-9]/),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -124,7 +137,8 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.status(200), json({ token });
+
+          res.status(200).json({ token });
         }
       );
     } catch (err) {

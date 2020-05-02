@@ -39,12 +39,17 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
   } = formState;
 
   const onChange = (e) => {
-    let validNumber = /^\+91\d*$/;
-    let hasOneCharacter = e.target.value.length === 1 ? true : false;
+    if (e.target.name === "mobile") {
+      let validNumber = /^\+91\d*$/;
+      let hasOneCharacter = e.target.value.length === 1 ? true : false;
 
-    if (hasOneCharacter) e.target.value = "+91" + e.target.value;
-    //if (e.target.value === "+91/b") e.target.value = "";
-    if (!e.target.value.match(validNumber)) return;
+      if (hasOneCharacter) e.target.value = "+91" + e.target.value;
+      if (!e.target.value.match(validNumber)) return;
+    } else if (e.target.name === "oneTimePassword") {
+      //let isNumber = /^\d*$/;
+      //if (!e.target.value.match(isNumber)) return;
+      if (isNaN(e.target.value)) return;
+    }
 
     let nextFormState = {
       ...formState,
@@ -88,14 +93,14 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
         }
       }
     } else {
-      if (password !== password2) {
+      /* if (password !== password2) {
         setFormState({
           ...formState,
           passwordError: "Passwords do not match",
         });
-      } else {
-        signup(formState, setFormState);
-      }
+      } else { */
+      signup(formState, setFormState);
+      //}
     }
   };
 
