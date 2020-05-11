@@ -19,7 +19,7 @@ const SlideMenu = ({
   useEffect(() => {
     if (showSlideMenu) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "visible";
-  });
+  }, [showSlideMenu]);
 
   return (
     <Fragment>

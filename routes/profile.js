@@ -34,13 +34,9 @@ router.put(
       errors = errors.array();
 
       if (!email) {
-        let filteredErros = errors.filter((error) => {
-          return error.param !== "email";
-        });
-
+        let filteredErros = errors.filter((error) => error.param !== "email");
         errors = filteredErros;
       }
-
       if (errors.length) {
         return res.status(400).json({ errors });
       }
