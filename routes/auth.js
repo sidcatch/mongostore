@@ -48,7 +48,7 @@ router.post(
 
       await mobileWithOTP.save();
 
-      sendSMS(parseInt(mobile), `Your OTP is ${oneTimePassword}`);
+      //sendSMS(parseInt(mobile), `Your OTP is ${oneTimePassword}`);
 
       res.status(200).json({ msg: "OTP sent" });
     } catch (err) {

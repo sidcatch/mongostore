@@ -7,6 +7,7 @@ import { loadToken } from "./actions/auth";
 import Header from "./components/layout/Header";
 import SignUp from "./components/auth/SignUp";
 import Login from "./components/auth/Login";
+import Profile from "./components/profile/Profile";
 
 import globalStyles from "./Global.module.css";
 
@@ -22,6 +23,7 @@ const App = () => {
 
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/profile" component={Profile} />
         <ul className={globalStyles.testList}>
           <li>Hey</li>
           <li>Hey</li>

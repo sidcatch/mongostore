@@ -25,7 +25,14 @@ router.get("/", auth, async (req, res) => {
 router.put(
   "/",
   auth,
-  [check("email", "Enter a valid email").isEmail()],
+  [
+    check("email", "Enter a valid email").isEmail(),
+    check("name", "Name must not start with a number").matches(/^[^0-9]/),
+    check("name", "Name should not contain any special characters").matches(
+      /^[a-zA-Z0-9 ]*$/
+    ),
+  ],
+
   async (req, res) => {
     const { name, email } = req.body;
 
@@ -35,6 +42,11 @@ router.put(
 
       if (!email) {
         let filteredErros = errors.filter((error) => error.param !== "email");
+        errors = filteredErros;
+      }
+
+      if (!name) {
+        let filteredErros = errors.filter((error) => error.param !== "name");
         errors = filteredErros;
       }
       if (errors.length) {

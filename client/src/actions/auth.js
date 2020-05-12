@@ -57,6 +57,8 @@ export const signup = (formState, setFormState) => async (dispatch) => {
           nextFormState.otpError = error.msg;
       });
       setFormState(nextFormState);
+    } else {
+      console.log(err);
     }
 
     dispatch({ type: SIGNUP_FAIL });

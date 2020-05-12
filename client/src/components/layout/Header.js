@@ -19,12 +19,12 @@ import shoppingBagImg from "../../icons/shopping-bag.svg";
 
 const Header = ({ isAuthenticated, logout }) => {
   const dropDownItems = [
-    { title: "Profile", icon: profileImg },
+    { title: "Profile", icon: profileImg, link: "/profile" },
     { title: "Orders", icon: shoppingBagImg },
     { title: "Logout", icon: logoutImg, click: () => logout() },
   ];
   const slideMenuItems = [
-    { title: "Profile", icon: profileImg },
+    { title: "Profile", icon: profileImg, link: "/profile" },
     { title: "Orders", icon: shoppingBagImg },
     { title: "Logout", icon: logoutImg, click: () => logout() },
   ];
@@ -44,7 +44,9 @@ const Header = ({ isAuthenticated, logout }) => {
         }}
       />
       <div className={headerStyles.logoContainer}>
-        <img className={headerStyles.logo} src={logo} alt="logo" />
+        <Link to={"/"} style={{ textDecoration: "none" }}>
+          <img className={headerStyles.logo} src={logo} alt="logo" />
+        </Link>
       </div>
 
       {isAuthenticated ? (
