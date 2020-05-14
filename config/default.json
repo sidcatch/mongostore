@@ -1,6 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://fariz:fariz@cluster0-jnr0j.mongodb.net/mongostore?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken",
-  "nexmoKey": "ed1ae72c",
-  "nexmoSecret": "HkZHmUI5EHgp7iMa"
-}
