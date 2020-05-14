@@ -2,3 +2,4 @@ node_modules/
 junk.js
 ToDo.txt
 Features.txt
+config/default.json
