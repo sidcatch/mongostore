@@ -12,33 +12,6 @@ import axios from "axios";
 
 const Profile = () => {
   const token = localStorage.getItem("token");
-  useEffect(() => {
-    const getProfile = async () => {
-      const config = {
-        headers: {
-          "x-auth-token": token,
-        },
-      };
-      try {
-        const res = await axios.get("/profile", config);
-        const { name, email, mobile } = res.data;
-        setFormState({
-          ...formState,
-          profileLoading: false,
-          name,
-          email,
-          mobile,
-          savedName: name,
-          savedEmail: email,
-        });
-      } catch (err) {
-        const error = err.response.data;
-        console.log(error);
-      }
-    };
-
-    getProfile();
-  }, []);
 
   const [formState, setFormState] = useState({
     savedName: "",
@@ -54,6 +27,32 @@ const Profile = () => {
     mobile: "",
     profileLoading: true,
   });
+
+  useEffect(() => {
+    (async () => {
+      const config = {
+        headers: {
+          "x-auth-token": token,
+        },
+      };
+      try {
+        const res = await axios.get("/profile", config);
+        const { name, email, mobile } = res.data;
+        setFormState((prevState) => ({
+          ...prevState,
+          name,
+          savedName: name,
+          email,
+          savedEmail: email,
+          mobile: "+" + mobile,
+          profileLoading: false,
+        }));
+      } catch (err) {
+        const error = err.response.data;
+        console.log(error);
+      }
+    })();
+  }, [token]);
 
   const {
     name,
