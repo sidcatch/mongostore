@@ -38,6 +38,7 @@ const ProductSchema = new mongoose.Schema({
   ], */
   IsAvailable: {
     type: Boolean,
+    default: true,
   },
   dateAdded: {
     type: Date,
