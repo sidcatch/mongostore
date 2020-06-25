@@ -9,7 +9,7 @@
 }
 
 .dropdownItem:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color-light);
 }
 .dropdownText {
   margin-left: 0.5rem;

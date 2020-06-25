@@ -8,7 +8,7 @@
   color: var(--primary-color);
 }
 .slideMenuItem:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color-light);
 }
 
 .slidMenuText {

@@ -8,6 +8,8 @@ const app = express();
 //Connect Database
 connectDB();
 
+app.use("/static", express.static(path.join(__dirname, "public")));
+
 app.use(express.json({ extended: false }));
 
 //Define Routes

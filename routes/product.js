@@ -6,6 +6,19 @@ const Product = require("../models/Product");
 const ProductCategory = require("../models/ProductCategory");
 const auth = require("../middleware/auth");
 
+//@route GET /product/
+//@desc get products
+//@access Public
+router.get("/", async (req, res) => {
+  try {
+    let products = await Product.find();
+    res.status(200).json(products);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
 //@route POST /product/
 //@desc post product
 //@access Public --> SHOULD BE PRIVATE!
