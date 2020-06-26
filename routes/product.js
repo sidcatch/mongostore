@@ -23,14 +23,14 @@ router.get("/", async (req, res) => {
 //@desc post product
 //@access Public --> SHOULD BE PRIVATE!
 router.post("/", async (req, res) => {
-  const { title, amount, price, photo, category } = req.body;
+  const { title, amount, price, image, category } = req.body;
 
   try {
     let productCategory = await ProductCategory.findOne({ category });
 
     let { _id } = productCategory;
 
-    let product = new Product({ title, amount, price, photo, category: _id });
+    let product = new Product({ title, amount, price, image, category: _id });
 
     await product.save();
 
