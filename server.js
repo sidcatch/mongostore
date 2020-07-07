@@ -8,14 +8,15 @@ const app = express();
 //Connect Database
 connectDB();
 
+//Use Nginx in production
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use(express.json({ extended: false }));
 
 //Define Routes
-app.use("/auth", require("./routes/auth"));
-app.use("/profile", require("./routes/profile"));
-app.use("/product", require("./routes/product"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/profile", require("./routes/profile"));
+app.use("/api/product", require("./routes/product"));
 
 //Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

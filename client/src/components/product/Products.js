@@ -12,7 +12,7 @@ const Products = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get("/product");
+        const res = await axios.get("/api/product");
         setProducts(res.data);
       } catch (err) {
         console.log(err);

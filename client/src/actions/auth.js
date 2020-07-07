@@ -33,7 +33,7 @@ export const signup = (formState, setFormState) => async (dispatch) => {
     const { mobile, password, oneTimePassword } = formState;
 
     const res = await axios.post(
-      "/auth/signup",
+      "/api/auth/signup",
       { mobile, password, oneTimePassword },
       config
     );
@@ -78,7 +78,11 @@ export const login = (formState, setFormState) => async (dispatch) => {
 
     const { mobile, password } = formState;
 
-    const res = await axios.post("/auth/login", { mobile, password }, config);
+    const res = await axios.post(
+      "/api/auth/login",
+      { mobile, password },
+      config
+    );
 
     localStorage.setItem("token", res.data.token);
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });

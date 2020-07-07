@@ -36,7 +36,7 @@ const Profile = () => {
         },
       };
       try {
-        const res = await axios.get("/profile", config);
+        const res = await axios.get("/api/profile", config);
         const { name, email, mobile } = res.data;
         setFormState((prevState) => ({
           ...prevState,
@@ -98,7 +98,7 @@ const Profile = () => {
     };
     try {
       setFormState({ ...formState, savingName: true });
-      const res = await axios.put("/profile", { name }, config);
+      const res = await axios.put("/api/profile", { name }, config);
       setFormState({
         ...formState,
         name: res.data.name,
@@ -138,7 +138,7 @@ const Profile = () => {
     };
     try {
       setFormState({ ...formState, savingEmail: true });
-      const res = await axios.put("/profile", { email }, config);
+      const res = await axios.put("/api/profile", { email }, config);
       setFormState({
         ...formState,
         email: res.data.email,
