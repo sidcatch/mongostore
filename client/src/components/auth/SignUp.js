@@ -77,7 +77,7 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
       };
       try {
         setFormState({ ...formState, showContinueButton: false });
-        await axios.post("/auth/receiveotp", { mobile }, config);
+        await axios.post("/api/auth/receiveotp", { mobile }, config);
         setFormState({ ...formState, showOnlyMobileInputField: false });
       } catch (err) {
         const errors = err.response.data.errors;
