@@ -5,7 +5,7 @@ const { check, validationResult } = require("express-validator");
 const Profile = require("../models/Profile");
 const auth = require("../middleware/auth");
 
-//@route GET /profile/
+//@route GET /api/profile/
 //@desc get profile
 //@access Private
 router.get("/", auth, async (req, res) => {
@@ -19,7 +19,7 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-//@route PUT /profile/
+//@route PUT /api/profile/
 //@desc edit profile
 //@access Private
 router.put(

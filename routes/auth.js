@@ -11,7 +11,7 @@ const auth = require("../middleware/auth");
 const sendSMS = require("../nexmo");
 const getRandomInt = require("../util/getRandomInt");
 
-//@route POST /auth/receiveotp
+//@route POST /api/auth/receiveotp
 //@desc receiveotp
 //@access Public
 router.post(
@@ -58,7 +58,7 @@ router.post(
   }
 );
 
-//@route POST /auth/signup
+//@route POST /api/auth/signup
 //@desc Register user
 //@access Public
 router.post(
@@ -148,7 +148,7 @@ router.post(
   }
 );
 
-//@route POST /auth/login
+//@route POST /api/auth/login
 //@desc login user
 //@access Public
 router.post(
@@ -214,7 +214,7 @@ router.post(
   }
 );
 
-//@route GET /auth/test
+//@route GET /api/auth/test
 //@desc test if user is logged in
 //@access Private
 router.get("/test", auth, (req, res) => {

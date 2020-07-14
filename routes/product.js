@@ -6,7 +6,7 @@ const Product = require("../models/Product");
 const ProductCategory = require("../models/ProductCategory");
 const auth = require("../middleware/auth");
 
-//@route GET /product/
+//@route GET /api/product/
 //@desc get products
 //@access Public
 router.get("/", async (req, res) => {
@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-//@route POST /product/
+//@route POST /api/product/
 //@desc post product
 //@access Public --> SHOULD BE PRIVATE!
 router.post("/", async (req, res) => {
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-//@route POST /product/category
+//@route POST /api/product/category
 //@desc post product category
 //@access Public --> SHOULD BE PRIVATE!
 router.post("/category", async (req, res) => {

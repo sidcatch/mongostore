@@ -27,7 +27,7 @@ const App = () => {
         <Route exact path="/profile" component={Profile} />
         <Products />
         <ul className={globalStyles.testList}>
-          <li>Hey</li>
+          <li>Jamal</li>
           <li>Hey</li>
           <li>Hey</li>
           <li>Hey</li>
