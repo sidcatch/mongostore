@@ -25,15 +25,7 @@ const App = () => {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={Profile} />
-        <Products />
-        <ul className={globalStyles.testList}>
-          <li>Jamal</li>
-          <li>Hey</li>
-          <li>Hey</li>
-          <li>Hey</li>
-          <li>Hey</li>
-          <li>Hey</li>
-        </ul>
+        <Route exact path="/" component={Products} />
       </Fragment>
     </Router>
   );
