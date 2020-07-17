@@ -2,7 +2,6 @@ import React, { Fragment, useState } from "react";
 
 import cx from "classnames";
 import searchBarStyles from "./SearchBar.module.css";
-import globalStyles from "../../Global.module.css";
 
 import searchImg from "../../icons/search.svg";
 

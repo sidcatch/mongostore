@@ -27,6 +27,7 @@
   border-right: 1px solid var(--light-color);
   background-color: white;
   transition: opacity 200ms;
+  z-index: 1000;
 }
 
 .dropdown-enter {
