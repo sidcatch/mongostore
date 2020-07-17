@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 import DropdownMenu from "./DropdownMenu";
 import SlideMenu from "./SlideMenu";
+import SearchBar from "../search/SearchBar";
 
 import cx from "classnames";
 import globalStyles from "../../Global.module.css";
@@ -48,6 +49,7 @@ const Header = ({ isAuthenticated, logout }) => {
           <img className={headerStyles.logo} src={logo} alt="logo" />
         </Link>
       </div>
+      <SearchBar />
 
       {isAuthenticated ? (
         <DropdownMenu menuTitle="My Account" dropDownItems={dropDownItems} />
