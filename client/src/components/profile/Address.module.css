@@ -1,0 +1,80 @@
+.formContainer {
+  width: 50%;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.form {
+  margin-top: 2rem;
+}
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  width: 70%;
+  padding: 0.4rem;
+  font-size: 1.3rem;
+  border: 1px solid var(--light-color);
+  border-radius: 5px;
+  outline: none;
+}
+.readOnly {
+  background-color: rgb(216, 216, 216);
+}
+
+.errorContainer {
+  color: red;
+}
+
+.label {
+  display: inline-block;
+  font-weight: bold;
+
+  margin: 0.3rem;
+}
+
+.edit {
+  color: var(--primary-color);
+  cursor: pointer;
+  padding-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.spinnerContainer {
+  margin: 5rem auto 0rem auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .formContainer {
+    padding-left: 3rem;
+    width: 100%;
+  }
+
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="password"],
+  .form input[type="date"],
+  .form select,
+  .form textarea {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .formContainer {
+    padding-left: 1rem;
+    padding-right: 0rem;
+    width: 100%;
+  }
+
+  .form input[type="text"],
+  .form input[type="email"],
+  .form input[type="password"],
+  .form input[type="date"],
+  .form select,
+  .form textarea {
+    width: 65%;
+  }
+}

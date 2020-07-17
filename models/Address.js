@@ -11,9 +11,6 @@ const AddressSchema = new mongoose.Schema({
   pincode: {
     type: Number,
   },
-  location: {
-    type: Number,
-  },
   address: {
     type: String,
   },
