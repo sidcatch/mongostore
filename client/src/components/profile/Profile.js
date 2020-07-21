@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 
 import Spinner from "../graphics/Spinner";
+import Addresses from "./Addresses";
 
 import cx from "classnames";
 import profileStyles from "./Profile.module.css";
@@ -170,7 +171,7 @@ const Profile = () => {
 
   const toggleEditName = () => {
     setFormState((prevState) => ({
-      ...formState,
+      ...prevState,
       editName: !prevState.editName,
       name: prevState.savedName,
       nameError: null,
@@ -178,7 +179,7 @@ const Profile = () => {
   };
   const toggleEditEmail = () => {
     setFormState((prevState) => ({
-      ...formState,
+      ...prevState,
       editEmail: !prevState.editEmail,
       email: prevState.savedEmail,
       emailError: null,
@@ -235,7 +236,7 @@ const Profile = () => {
           className={cx(profileStyles.edit, globalStyles["ml-1"])}
           onClick={toggleEditEmail}
         >
-          {editEmail ? "cancle" : "edit"}
+          {editEmail ? "cancel" : "edit"}
         </small>
         <div className={cx(profileStyles.errorContainer)}>
           <small>{emailError}</small>
@@ -305,6 +306,7 @@ const Profile = () => {
         </h1>
         {content}
       </section>
+      <Addresses />
     </Fragment>
   );
 };

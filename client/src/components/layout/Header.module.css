@@ -10,7 +10,7 @@
 
 .cart {
   height: 50px;
-  padding-left: 2rem;
+  margin-left: 2rem;
 }
 
 @media screen and (max-width: 500px) {

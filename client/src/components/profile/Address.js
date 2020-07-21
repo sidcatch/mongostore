@@ -1,62 +1,43 @@
 import React, { Fragment, useState } from "react";
 
 import cx from "classnames";
-import addressStyles from "./AddressForm.module.css";
+import addressStyles from "./Address.module.css";
 import globalStyles from "../../Global.module.css";
-
-import profileImg from "../../icons/profile.svg";
-
-import axios from "axios";
+/*
+import axios from "axios"; */
 
 //can become a form or simply a display. reuse this in checkout
 const Address = () => {
   const token = localStorage.getItem("token");
 
   const [formState, setFormState] = useState({
-    name: "",
-    nameError: null,
-    email: "",
-    emailError: null,
-    mobile: "",
-    mobileError: null,
-    address: "",
-    city: "",
-    state: "",
-    pincode: "",
+    name: "Abdualla",
+    mobile: "34534543",
+    address: "3453-345-43534/5 bebe mongy Old town, laugh Road",
+    city: "Hyderabad",
+    state: "Telangana",
+    pincode: "50000",
+    editable: true,
+    edit: true,
+    selectable: false,
     saving: false,
   });
 
   const {
     name,
-    nameError,
     email,
-    emailError,
     mobile,
-    mobileError,
     address,
     city,
     state,
     pincode,
+    editable,
+    edit,
     saving,
   } = formState;
 
   const onChange = (e) => {
-    if (e.target.name === "name") {
-      let specialCharacter = /[^a-zA-Z0-9 ]/;
-      let startsWithNumber = /^[0-9]/;
-
-      if (e.target.value.match(specialCharacter)) return;
-      if (e.target.value.match(startsWithNumber)) return;
-    }
-    if (e.target.name === "email") {
-    }
-
     let nextFormState = { ...formState, [e.target.name]: e.target.value };
-
-    if (e.target.name === "name") nextFormState.nameError = null;
-    else if (e.target.name === "email") nextFormState.emailError = null;
-    else if (e.target.name === "mobile") nextFormState.mobileError = null;
-
     setFormState(nextFormState);
   };
 
@@ -74,146 +55,128 @@ const Address = () => {
       //const res = await axios.put("/api/profile", { name }, config);
       setFormState({
         saving: false,
+        showForm: false,
       });
-      //hide form
     } catch (err) {
-      const errors = err.response.data.errors;
+      setFormState({
+        saving: false,
+      });
 
-      console.log(errors);
-      if (errors) {
-        let nextFormState = { ...formState };
-        errors.forEach((error) => {
-          //We show only one name or email error at a time
-          if (error.param === "name" && !nextFormState.nameError)
-            nextFormState.nameError = error.msg;
-          else if (error.param === "email" && !nextFormState.emailError)
-            nextFormState.emailError = error.msg;
-          else if (error.param === "mobile" && !nextFormState.mobileError)
-            nextFormState.mobileError = error.msg;
-        });
-
-        nextFormState.saving = false;
-        setFormState(nextFormState);
-      } else {
-        console.log(err);
-      }
+      console.log(err);
     }
   };
 
-  let content = (
+  const toggleEdit = () => {
+    setFormState((prevState) => ({
+      ...prevState,
+      edit: !prevState.edit,
+    }));
+  };
+
+  let form = (
     <Fragment>
-      <form className={profileStyles.form} onSubmit={(e) => onSubmitName(e)}>
-        <label className={profileStyles.label}>Name</label>
-        <small
-          className={cx(profileStyles.edit, globalStyles["ml-1"])}
-          onClick={toggleEditName}
-        >
-          {editName ? "cancle" : "edit"}
+      <form className={addressStyles.form} onSubmit={(e) => onSubmit(e)}>
+        <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
+          cancel
         </small>
-        <div className={cx(profileStyles.errorContainer)}>
-          <small>{nameError}</small>
+        <div className={addressStyles.nameAndMobile}>
+          <div className={addressStyles.nameField}>
+            <label className={addressStyles.label}>Name</label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              autoComplete="off"
+              onChange={(e) => onChange(e)}
+            />
+          </div>
+          <div className={addressStyles.mobileField}>
+            <label className={addressStyles.label}>Mobile Number</label>
+            <input
+              type="text"
+              name="mobile"
+              value={mobile}
+              autoComplete="off"
+              onChange={(e) => onChange(e)}
+            />
+          </div>
         </div>
-        <div>
+        <div className={addressStyles.addressField}>
+          <label className={addressStyles.label}>Address</label>
           <input
             type="text"
-            name="name"
-            value={name}
+            name="address"
+            value={address}
             autoComplete="off"
             onChange={(e) => onChange(e)}
-            className={cx({ [profileStyles.readOnly]: !editName })}
-            readOnly={!editName}
           />
-          {editName &&
-            (savingName ? (
-              <Spinner
-                height="2.8rem"
-                verticalAlign="bottom"
-                margin="0rem 0rem 0rem 2rem"
-              />
-            ) : (
-              <input
-                type="submit"
-                className={cx(globalStyles.btn, globalStyles["ml-2"])}
-                value="save"
-              />
-            ))}
         </div>
-      </form>
-      <form className={profileStyles.form} onSubmit={(e) => onSubmitEmail(e)}>
-        <label className={profileStyles.label}>Email</label>
-        <small
-          className={cx(profileStyles.edit, globalStyles["ml-1"])}
-          onClick={toggleEditEmail}
-        >
-          {editEmail ? "cancle" : "edit"}
-        </small>
-        <div className={cx(profileStyles.errorContainer)}>
-          <small>{emailError}</small>
+        <div className={addressStyles.cityAndState}>
+          <div className={addressStyles.cityField}>
+            <label className={addressStyles.label}>City</label>
+            <input
+              type="text"
+              name="city"
+              value={city}
+              autoComplete="off"
+              onChange={(e) => onChange(e)}
+            />
+          </div>
+          <div className={addressStyles.stateField}>
+            <label className={addressStyles.label}>State</label>
+            <input
+              type="text"
+              name="state"
+              value={state}
+              autoComplete="off"
+              onChange={(e) => onChange(e)}
+            />
+          </div>
         </div>
-        <div>
+        <div className={addressStyles.pincodeField}>
+          <label className={addressStyles.label}>Pincode</label>
           <input
             type="text"
-            name="email"
-            value={email}
+            name="pincode"
+            value={pincode}
             autoComplete="off"
             onChange={(e) => onChange(e)}
-            className={cx({ [profileStyles.readOnly]: !editEmail })}
-            readOnly={!editEmail}
-          />
-          {editEmail &&
-            (savingEmail ? (
-              <Spinner
-                height="2.8rem"
-                verticalAlign="bottom"
-                margin="0rem 0rem 0rem 2rem"
-              />
-            ) : (
-              <input
-                type="submit"
-                className={cx(globalStyles.btn, globalStyles["ml-2"])}
-                value="save"
-              />
-            ))}
-        </div>
-      </form>
-      <form className={profileStyles.form}>
-        <label className={profileStyles.label}>Mobile Number</label>
-        <div
-          className={cx(
-            profileStyles.errorContainer,
-            globalStyles["ml-point5"]
-          )}
-        >
-          <small>{}</small>
-        </div>
-        <div>
-          <input
-            type="text"
-            name="mobile"
-            value={mobile}
-            autoComplete="off"
-            onChange={(e) => onChange(e)}
-            className={profileStyles.readOnly}
-            readOnly
           />
         </div>
+        <input
+          type="submit"
+          className={cx(globalStyles.btn, addressStyles.submit)}
+          value="save"
+        />
       </form>
+    </Fragment>
+  );
+
+  let addressDisplay = (
+    <Fragment>
+      <div className={addressStyles.addressDisplay}>
+        {editable && (
+          <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
+            edit
+          </small>
+        )}
+
+        <p className={addressStyles.nameAndMobile}>
+          {name} {mobile}
+        </p>
+
+        <address id={addressStyles.address}>
+          {address}, {city}, {state}
+        </address>
+        <p className={addressStyles.pincode}>{pincode}</p>
+      </div>
     </Fragment>
   );
 
   return (
     <Fragment>
-      <section className={profileStyles.formContainer}>
-        <h1 className={cx(globalStyles.large, globalStyles["mt-1point5"])}>
-          <img
-            className={cx(globalStyles.largeIcon, globalStyles["mr-1"])}
-            style={{ verticalAlign: "top" }}
-            src={profileImg}
-            alt="profile"
-          />
-          Profile
-        </h1>
-        {content}
+      <section className={addressStyles.addressContainer}>
+        {edit ? form : addressDisplay}
       </section>
     </Fragment>
   );

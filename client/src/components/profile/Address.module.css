@@ -1,11 +1,47 @@
-.formContainer {
+.addressContainer {
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--light-color);
+}
+
+#address {
+  margin: 0.5rem 0;
+}
+#manageAddresses {
+  font-size: 1rem;
   width: 50%;
   margin: auto;
-  padding: 0 1rem;
+  padding: 0 1.3rem;
+  margin-top: 2rem;
+}
+
+.nameAndMobile,
+.cityAndState {
+  font-weight: bold;
+  color: grey;
+  display: flex;
+}
+
+.nameField,
+.mobileField,
+.cityField,
+.stateField {
+  flex: 1;
+}
+.nameField,
+.cityField {
+  margin-right: 1rem;
+}
+.pincode {
+  font-weight: bold;
+  color: grey;
 }
 
 .form {
-  margin-top: 2rem;
 }
 .form input[type="text"],
 .form input[type="email"],
@@ -13,25 +49,19 @@
 .form input[type="date"],
 .form select,
 .form textarea {
-  width: 70%;
+  width: 100%;
   padding: 0.4rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   border: 1px solid var(--light-color);
   border-radius: 5px;
   outline: none;
-}
-.readOnly {
-  background-color: rgb(216, 216, 216);
-}
-
-.errorContainer {
-  color: red;
+  display: block;
 }
 
 .label {
   display: inline-block;
   font-weight: bold;
-
+  color: grey;
   margin: 0.3rem;
 }
 
@@ -40,6 +70,12 @@
   cursor: pointer;
   padding-bottom: 0.3rem;
   font-weight: bold;
+  position: absolute;
+  left: 70%;
+}
+
+.submit {
+  margin-top: 1rem;
 }
 
 .spinnerContainer {
@@ -47,7 +83,7 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .formContainer {
+  .addressContainer {
     padding-left: 3rem;
     width: 100%;
   }
@@ -63,7 +99,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .formContainer {
+  .addressContainer {
     padding-left: 1rem;
     padding-right: 0rem;
     width: 100%;

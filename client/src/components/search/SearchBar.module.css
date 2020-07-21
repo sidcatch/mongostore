@@ -16,8 +16,10 @@
   height: 2rem;
   width: 2rem;
   border: 1px solid var(--light-color);
+  border-left: none;
   vertical-align: top;
   outline: none;
+  background-color: var(--secondary-color);
 }
 .searchIcon {
   height: 1.4rem;
