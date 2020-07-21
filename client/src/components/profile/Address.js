@@ -8,7 +8,7 @@ import axios from "axios"; */
 
 //can become a form or simply a display. reuse this in checkout
 const Address = () => {
-  const token = localStorage.getItem("token");
+  //const token = localStorage.getItem("token");
 
   const [formState, setFormState] = useState({
     name: "Abdualla",
@@ -18,14 +18,13 @@ const Address = () => {
     state: "Telangana",
     pincode: "50000",
     editable: true,
-    edit: true,
+    edit: false,
     selectable: false,
     saving: false,
   });
 
   const {
     name,
-    email,
     mobile,
     address,
     city,
@@ -33,7 +32,7 @@ const Address = () => {
     pincode,
     editable,
     edit,
-    saving,
+    //saving,
   } = formState;
 
   const onChange = (e) => {
@@ -44,12 +43,12 @@ const Address = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const config = {
+    /* const config = {
       headers: {
         "Content-Type": "application/json",
         "x-auth-token": token,
       },
-    };
+    }; */
     try {
       setFormState({ ...formState, saving: true });
       //const res = await axios.put("/api/profile", { name }, config);
