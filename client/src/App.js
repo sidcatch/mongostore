@@ -12,7 +12,7 @@ import Profile from "./components/profile/Profile";
 import Products from "./components/product/Products";
 import Advertisement from "./components/graphics/Advertisement";
 import Cart from "./components/cart/Cart";
-import Checkout from "./components/cart/Checkout";
+import Checkout from "./components/checkout/Checkout";
 import Orders from "./components/orders/Order";
 
 const App = () => {

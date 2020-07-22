@@ -5,7 +5,7 @@ import cartStyles from "./Cart.module.css";
 
 //can become a form or simply a display. reuse this in checkout
 const Item = () => {
-  const [item, setItem] = useState({
+  const [item /* , setItem */] = useState({
     title: "Steel Cook and Serve Set",
     price: 500,
     quantity: 3,

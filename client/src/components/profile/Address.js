@@ -1,12 +1,11 @@
 import React, { Fragment, useState } from "react";
 
 import cx from "classnames";
-import addressStyles from "./Address.module.css";
 import globalStyles from "../../Global.module.css";
+import addressStyles from "./Address.module.css";
 /*
 import axios from "axios"; */
 
-//can become a form or simply a display. reuse this in checkout
 const Address = () => {
   //const token = localStorage.getItem("token");
 
@@ -17,7 +16,7 @@ const Address = () => {
     city: "Hyderabad",
     state: "Telangana",
     pincode: "50000",
-    editable: true,
+    editable: false,
     edit: false,
     selectable: false,
     saving: false,

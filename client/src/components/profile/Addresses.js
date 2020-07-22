@@ -8,8 +8,10 @@ const Addresses = () => {
   return (
     <Fragment>
       <h2 id={addressStyles.manageAddresses}>Manage Addresses</h2>
-      <Address />
-      <Address />
+      <div className={addressStyles.addresses}>
+        <Address />
+        <Address />
+      </div>
     </Fragment>
   );
 };

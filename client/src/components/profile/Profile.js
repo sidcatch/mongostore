@@ -199,7 +199,7 @@ const Profile = () => {
           className={cx(profileStyles.edit, globalStyles["ml-1"])}
           onClick={toggleEditName}
         >
-          {editName ? "cancle" : "edit"}
+          {editName ? "cancel" : "edit"}
         </small>
         <div className={cx(profileStyles.errorContainer)}>
           <small>{nameError}</small>
