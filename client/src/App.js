@@ -13,6 +13,7 @@ import Products from "./components/product/Products";
 import Advertisement from "./components/graphics/Advertisement";
 import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
+import Alert from "./components/layout/Alert";
 import Orders from "./components/orders/Order";
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
     <Router>
       <Fragment>
         <Header />
-
+        <Alert />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={Profile} />
