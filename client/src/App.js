@@ -10,7 +10,7 @@ import SignUp from "./components/auth/SignUp";
 import Login from "./components/auth/Login";
 import Profile from "./components/profile/Profile";
 import Products from "./components/product/Products";
-import Advertisement from "./components/graphics/Advertisement";
+//import Advertisement from "./components/graphics/Advertisement";
 import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
 import Alert from "./components/layout/Alert";
@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/" component={Advertisement} />
+        {/* <Route exact path="/" component={Advertisement} /> */}
         <Route exact path="/" component={Products} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={Checkout} />

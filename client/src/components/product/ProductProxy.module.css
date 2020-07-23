@@ -1,0 +1,47 @@
+.productContainer {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  border-color: var(--very-light-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  margin: 15px;
+  width: 150px;
+  height: 150px;
+  background-color: var(--very-light-color);
+}
+
+.title {
+  height: 1rem;
+  margin: 5px 15px;
+  width: 150px;
+  flex-grow: 1;
+  background-color: var(--very-light-color);
+}
+
+.amount {
+  height: 1rem;
+  margin: 5px 15px;
+  background-color: var(--very-light-color);
+  width: 75px;
+}
+
+.price {
+  height: 1rem;
+  margin: 5px 15px;
+  background-color: var(--very-light-color);
+  width: 75px;
+}
+
+.addToCart {
+  width: 6.5rem;
+  height: 2.4rem;
+  margin: 5px 15px 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  border-color: var(--very-light-color);
+}

@@ -22,7 +22,6 @@
   font-size: 1rem;
   margin: 5px 15px;
   width: 150px;
-  overflow: hidden;
   flex-grow: 1;
 }
 
@@ -31,7 +30,6 @@
   margin: 5px 15px;
   color: var(--light-color);
   width: 150px;
-  overflow: hidden;
 }
 
 .price {
@@ -40,7 +38,6 @@
   margin: 5px 15px;
   color: var(--light-color);
   width: 150px;
-  overflow: hidden;
 }
 
 .rupees {
