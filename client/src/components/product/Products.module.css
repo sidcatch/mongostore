@@ -6,11 +6,16 @@
   margin: 2rem 100px;
   justify-items: center;
 }
-.title {
+.header {
   width: 100%;
+  display: flex;
+  align-items: center;
   grid-column: 1/-1;
   padding: 1rem;
   border-bottom: 1px solid var(--light-color);
+}
+.info {
+  margin-left: 1rem;
 }
 .viewAllButton {
   min-width: 2.2rem;
@@ -62,5 +67,17 @@
 }
 .pageButton:hover {
   border-color: var(--secondary-color-light);
+  background-color: var(--secondary-color-light);
+}
+.currentPageButton {
+  min-width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1rem;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 5px;
+  border-color: var(--secondary-color);
+  outline: none;
+  margin: 0px 0.2rem;
   background-color: var(--secondary-color-light);
 }
