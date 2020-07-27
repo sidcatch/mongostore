@@ -25,7 +25,7 @@ const Advertisement = () => {
       >
         <ImageSlider
           height=""
-          width="98.5vw"
+          width="100vw"
           duration={100}
           showDots={false}
           data={imageData}

@@ -79,6 +79,48 @@ router.get("/search", async (req, res) => {
   }
 });
 
+//@route GET /api/products/category-preview/:category
+//@desc get products preview by category
+//@access Public
+router.get("/category-preview/:category", async (req, res) => {
+  try {
+    let category = req.params.category.replace(/-/g, " ");
+
+    let productCategory = await ProductCategory.findOne({ category });
+    if (!productCategory) {
+      return res.status(404).json({ msg: "Category not found" });
+    }
+
+    let products = await Product.find({ category: productCategory._id }).limit(
+      4
+    );
+
+    res.status(200).json(products);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
+//@route GET /api/products/categories
+//@desc get all categories
+//@access Public
+router.get("/categories", async (req, res) => {
+  try {
+    let categories = await ProductCategory.find({}, { category: 1, _id: 0 });
+    if (!categories) {
+      return res.status(404).json({ msg: "No Categories" });
+    }
+
+    categories = categories.map((c) => c.category.replace(/ /g, "-"));
+
+    res.status(200).json(categories);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
 //@route POST /api/product/
 //@desc post product
 //@access Public --> SHOULD BE PRIVATE!

@@ -12,6 +12,7 @@ import Login from "./components/auth/Login";
 import Profile from "./components/profile/Profile";
 import Products from "./components/product/Products";
 import Advertisement from "./components/graphics/Advertisement";
+import Categories from "./components/product/Categories";
 import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
 import Alert from "./components/layout/Alert";
@@ -32,7 +33,7 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/" component={Advertisement} />
-        {/* <Route exact path="/" component={Products} /> */}
+        <Route exact path="/" component={Categories} />
         <Route exact path="/products/category/:category" component={Products} />
         <Route exact path="/products/search" component={Products} />
         <Route exact path="/cart" component={Cart} />

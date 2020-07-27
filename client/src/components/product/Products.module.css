@@ -17,19 +17,7 @@
 .info {
   margin-left: 1rem;
 }
-.viewAllButton {
-  min-width: 2.2rem;
-  height: 2.2rem;
-  font-size: 1rem;
-  border-style: solid;
-  border-width: 3px;
-  border-radius: 5px;
-  border-color: var(--secondary-color);
-  cursor: pointer;
-  outline: none;
-  margin: 0px 1rem;
-  padding: 0px 0.2rem;
-}
+
 .viewAllButton:hover {
   border-color: var(--secondary-color-light);
   background-color: var(--secondary-color-light);
