@@ -34,6 +34,7 @@ const App = () => {
         <Route exact path="/" component={Advertisement} />
         {/* <Route exact path="/" component={Products} /> */}
         <Route exact path="/products/category/:category" component={Products} />
+        <Route exact path="/products/search" component={Products} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/orders" component={Orders} />

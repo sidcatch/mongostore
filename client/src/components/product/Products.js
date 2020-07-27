@@ -16,6 +16,7 @@ const Products = ({ match }) => {
   let query = useQuery();
   let page = query.get("page");
   if (!page) page = "1";
+  let q = query.get("q");
 
   const [products, setProducts] = useState([]);
   const [productsState, setProductsState] = useState({
@@ -47,9 +48,14 @@ const Products = ({ match }) => {
       }
 
       try {
-        const res = await axios.get(
-          `/api/products/category/${category}?page=${page}`
-        );
+        let res = null;
+        if (category) {
+          res = await axios.get(
+            `/api/products/category/${category}?page=${page}`
+          );
+        } else {
+          res = await axios.get(`/api/products/search?page=${page}&q=${q}`);
+        }
 
         let { products, totalProducts, itemsPerPage } = res.data;
 
@@ -65,16 +71,20 @@ const Products = ({ match }) => {
         });
       } catch (err) {
         console.log(err);
+        console.log(err.response.data);
+        setProductsState((p) => ({ ...p, productsLoading: false }));
       }
     })();
-  }, [match.params.category, page]);
+  }, [match.params.category, q, page]);
 
   return (
     <Fragment>
       <div className={ProductsStyles.porductsContainer}>
         <div className={ProductsStyles.header}>
           <h2 className={ProductsStyles.title}>
-            {parseCategory(match.params.category)}
+            {match.params.category
+              ? parseCategory(match.params.category)
+              : `Search results for "${q}"`}
           </h2>
           <p className={ProductsStyles.info}>
             ({(parseInt(page) - 1) * itemsPerPage + 1} -{" "}
@@ -105,7 +115,12 @@ const Products = ({ match }) => {
           </p>
           <span className={ProductsStyles.pageNumbers}>
             {parseInt(page) > 2 && (
-              <Link to={{ pathname: `${match.url}`, search: "?page=1" }}>
+              <Link
+                to={{
+                  pathname: `${match.url}`,
+                  search: `?page=1${q ? "&q=" + q : ""}`,
+                }}
+              >
                 <button className={ProductsStyles.pageButton}>1</button>
               </Link>
             )}
@@ -114,7 +129,7 @@ const Products = ({ match }) => {
               <Link
                 to={{
                   pathname: `${match.url}`,
-                  search: `?page=${parseInt(page) - 1}`,
+                  search: `?page=${parseInt(page) - 1}${q ? "&q=" + q : ""}`,
                 }}
               >
                 <button className={ProductsStyles.pageButton}>
@@ -127,7 +142,7 @@ const Products = ({ match }) => {
               <Link
                 to={{
                   pathname: `${match.url}`,
-                  search: `?page=${parseInt(page) + 1}`,
+                  search: `?page=${parseInt(page) + 1}${q ? "&q=" + q : ""}`,
                 }}
               >
                 <button className={ProductsStyles.pageButton}>
@@ -138,7 +153,10 @@ const Products = ({ match }) => {
             {parseInt(page) < parseInt(lastPage) - 2 && <span>...</span>}
             {parseInt(page) < parseInt(lastPage) - 1 && (
               <Link
-                to={{ pathname: `${match.url}`, search: `?page=${lastPage}` }}
+                to={{
+                  pathname: `${match.url}`,
+                  search: `?page=${lastPage}${q ? "&q=" + q : ""}`,
+                }}
               >
                 <button className={ProductsStyles.pageButton}>
                   {lastPage}

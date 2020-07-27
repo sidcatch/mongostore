@@ -6,8 +6,6 @@ const Product = require("../models/Product");
 const ProductCategory = require("../models/ProductCategory");
 const auth = require("../middleware/auth");
 
-const ITEMS_PER_PAGE = 20;
-
 //@route GET /api/products/
 //@desc get products
 //@access Public
@@ -22,13 +20,14 @@ router.get("/", async (req, res) => {
 });
 
 //@route GET /api/products/category/:category
-//@desc get products
+//@desc get products by category
 //@access Public
 router.get("/category/:category", async (req, res) => {
   try {
     let category = req.params.category.replace(/-/g, " ");
     let { page } = req.query;
     if (!page || page < 1) page = 1;
+    let itemsPerPage = 10;
 
     let productCategory = await ProductCategory.findOne({ category });
     if (!productCategory) {
@@ -38,11 +37,40 @@ router.get("/category/:category", async (req, res) => {
     let totalProducts = await Product.find({
       category: productCategory._id,
     }).countDocuments();
-    let itemsPerPage = ITEMS_PER_PAGE;
 
     let products = await Product.find({ category: productCategory._id })
-      .skip((page - 1) * ITEMS_PER_PAGE)
-      .limit(ITEMS_PER_PAGE);
+      .skip((page - 1) * itemsPerPage)
+      .limit(itemsPerPage);
+
+    res.status(200).json({ products, totalProducts, itemsPerPage });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
+//@route GET /api/products/search
+//@desc get products by searching
+//@access Public
+router.get("/search", async (req, res) => {
+  try {
+    let { page, q } = req.query;
+    if (!page || page < 1) page = 1;
+    let itemsPerPage = 10;
+
+    if (!q) {
+      return res.status(404).json({ msg: "search query is required" });
+    }
+
+    let totalProducts = await Product.find({
+      $text: { $search: q },
+    }).countDocuments();
+
+    let products = await Product.find({
+      $text: { $search: q },
+    })
+      .skip((page - 1) * itemsPerPage)
+      .limit(itemsPerPage);
 
     res.status(200).json({ products, totalProducts, itemsPerPage });
   } catch (err) {

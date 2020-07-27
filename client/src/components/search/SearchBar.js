@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 
 import cx from "classnames";
 import searchBarStyles from "./SearchBar.module.css";
@@ -19,7 +20,7 @@ const SearchBar = () => {
     setFormState(nextFormState);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log("search");
   };
@@ -34,13 +35,30 @@ const SearchBar = () => {
           autoComplete="off"
           onChange={(e) => onChange(e)}
         />
-        <button type="button" className={searchBarStyles.searchButton}>
-          <img
-            className={cx(searchBarStyles.searchIcon)}
-            src={searchImg}
-            alt="search"
-          />
-        </button>
+        {query ? (
+          <Link
+            to={{
+              pathname: `/products/search`,
+              search: `?page=1&q=${query}`,
+            }}
+          >
+            <button className={searchBarStyles.searchButton}>
+              <img
+                className={cx(searchBarStyles.searchIcon)}
+                src={searchImg}
+                alt="search"
+              />
+            </button>
+          </Link>
+        ) : (
+          <button className={searchBarStyles.searchButton}>
+            <img
+              className={cx(searchBarStyles.searchIcon)}
+              src={searchImg}
+              alt="search"
+            />
+          </button>
+        )}
       </form>
     </Fragment>
   );
