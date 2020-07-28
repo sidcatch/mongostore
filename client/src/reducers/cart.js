@@ -13,19 +13,20 @@ export default function (state = initialState, action) {
 
   switch (type) {
     case ADDTOCART:
-      return [...state, { ...payload, quantiy: 1 }]; //payload is product
+      return [...state, { ...payload, quantity: 1 }]; //payload is product
     case REMOVEFROMCART:
-      return state.filter((item) => item._id !== payload); //payload is product id
+      return state.filter((item) => item.id !== payload); //payload is product id
     case INCREMENTITEM:
       return state.map((item) => {
-        if (item._id === payload) return { ...item, quantiy: item.quantiy + 1 };
-        else return item;
+        if (item.id === payload)
+          return { ...item, quantity: item.quantity + 1 };
+        return item;
       }); //payload is product id
     case DECREMENTITEM:
       return state.map((item) => {
-        if (item._id === payload && !(item.quantiy - 1 < 0))
-          return { ...item, quantiy: item.quantiy - 1 };
-        else return item;
+        if (item.id === payload)
+          return { ...item, quantity: item.quantity - 1 };
+        return item;
       }); //payload is product id
     case EMPTYCART:
       return [];

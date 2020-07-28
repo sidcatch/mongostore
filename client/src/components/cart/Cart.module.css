@@ -77,3 +77,19 @@
   float: right;
   margin: 1rem;
 }
+
+.emptyCart {
+  display: inline-block;
+  width: 6.5rem;
+  background: white;
+  color: var(--dark-color);
+  padding: 0.4rem 0.3rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin: 1rem;
+}
+.emptyCart:hover {
+  color: var(--primary-color);
+}

@@ -101,6 +101,7 @@ const Products = ({ match }) => {
                   title={title}
                   amount={amount}
                   price={price}
+                  id={_id}
                   key={_id}
                 />
               );
