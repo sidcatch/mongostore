@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Redux
-import store from "./store";
+import { store } from "./store";
 import { loadToken } from "./actions/auth";
 
 import ScrollToTop from "./components/router/ScrollToTop";

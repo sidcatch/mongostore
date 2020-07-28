@@ -22,7 +22,6 @@ const SearchBar = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("search");
   };
 
   let content = (
