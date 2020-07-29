@@ -193,4 +193,31 @@ router.put(
     }
   }
 );
+
+//@route DELETE /api/profile/address/:id
+//@desc delete address
+//@access Private
+router.delete("/address/:id", auth, async (req, res) => {
+  try {
+    let id = req.params.id;
+
+    let profile = await Profile.findOne({ _id: req.profile.id });
+    if (!profile) return res.status(404).json({ msg: "Profile not found" });
+
+    let addressId = profile.addresses.find((addressId) => addressId == id);
+    if (!addressId)
+      return res.status(404).json({ msg: "Address ID not found" });
+
+    await Address.deleteOne({ _id: id });
+
+    let addresses = profile.addresses.filter((addressId) => addressId != id);
+    profile.addresses = addresses;
+    await profile.save();
+
+    return res.status(404).json(addressId);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
 module.exports = router;

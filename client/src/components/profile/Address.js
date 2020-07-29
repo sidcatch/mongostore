@@ -17,7 +17,7 @@ const Address = () => {
     state: "Telangana",
     pincode: "50000",
     editable: true,
-    edit: false,
+    edit: true,
     selectable: false,
     saving: false,
   });
@@ -148,6 +148,9 @@ const Address = () => {
           className={cx(globalStyles.btn, addressStyles.submit)}
           value="save"
         />
+        <small className={cx(addressStyles.edit, addressStyles.delete)}>
+          delete
+        </small>
       </form>
     </Fragment>
   );
