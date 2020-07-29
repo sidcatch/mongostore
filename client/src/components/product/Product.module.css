@@ -67,9 +67,10 @@
 }
 
 .incAndDec {
-  min-width: 2.35rem;
-  height: 2.35rem;
-  font-size: 1.2rem;
+  width: 2.3rem;
+  padding: 6px 4px;
+  font-size: 1rem;
+  font-weight: bold;
   border-style: solid;
   border-width: 3px;
   border-radius: 5px;

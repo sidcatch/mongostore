@@ -15,10 +15,7 @@ const ProfileSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  defaultAddress: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Address",
-  },
+  addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: "address" }],
   dateJoined: {
     type: Date,
     default: Date.now,

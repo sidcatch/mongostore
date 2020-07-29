@@ -16,7 +16,7 @@ const Address = () => {
     city: "Hyderabad",
     state: "Telangana",
     pincode: "50000",
-    editable: false,
+    editable: true,
     edit: false,
     selectable: false,
     saving: false,
@@ -74,9 +74,11 @@ const Address = () => {
   let form = (
     <Fragment>
       <form className={addressStyles.form} onSubmit={(e) => onSubmit(e)}>
-        <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
-          cancel
-        </small>
+        <div className={addressStyles.editContainer}>
+          <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
+            cancel
+          </small>
+        </div>
         <div className={addressStyles.nameAndMobile}>
           <div className={addressStyles.nameField}>
             <label className={addressStyles.label}>Name</label>
@@ -154,9 +156,11 @@ const Address = () => {
     <Fragment>
       <div className={addressStyles.addressDisplay}>
         {editable && (
-          <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
-            edit
-          </small>
+          <div className={addressStyles.editContainer}>
+            <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
+              edit
+            </small>
+          </div>
         )}
 
         <p className={addressStyles.nameAndMobile}>

@@ -45,6 +45,11 @@
   margin: 5rem auto 0rem auto;
 }
 
+.addressesContainer {
+  width: 50%;
+  margin: auto;
+}
+
 @media screen and (max-width: 1000px) {
   .formContainer {
     padding-left: 3rem;

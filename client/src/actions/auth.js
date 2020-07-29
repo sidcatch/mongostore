@@ -5,19 +5,18 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOAD_TOKEN,
   LOGOUT,
 } from "./types";
 import axios from "axios";
 
 //Load token from localStorage
-export const loadToken = () => (dispatch) => {
+/* export const loadToken = () => (dispatch) => {
   if (localStorage.token)
     dispatch({
       type: LOAD_TOKEN,
       payload: { token: localStorage.getItem("token") },
     });
-};
+}; */
 
 //Signup User
 export const signup = (formState, setFormState) => async (dispatch) => {
@@ -39,7 +38,7 @@ export const signup = (formState, setFormState) => async (dispatch) => {
     );
 
     console.log(res);
-    localStorage.setItem("token", res.data.token);
+    //localStorage.setItem("token", res.data.token);
     dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
   } catch (err) {
     const errors = err.response.data.errors;
@@ -84,7 +83,7 @@ export const login = (formState, setFormState) => async (dispatch) => {
       config
     );
 
-    localStorage.setItem("token", res.data.token);
+    //localStorage.setItem("token", res.data.token);
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
   } catch (err) {
     const errors = err.response.data.errors;
@@ -108,6 +107,6 @@ export const login = (formState, setFormState) => async (dispatch) => {
 
 ///Logout User
 export const logout = () => async (dispatch) => {
-  localStorage.removeItem("token");
+  //localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
 };

@@ -16,7 +16,7 @@ const persistConfig = {
   key: "root",
   storage: storage,
   stateReconciler: autoMergeLevel2,
-  whitelist: ["cart"],
+  whitelist: ["cart", "auth"],
 };
 
 const pReducer = persistReducer(persistConfig, rootReducer);

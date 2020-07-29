@@ -1,9 +1,9 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 //Redux
-import { store } from "./store";
-import { loadToken } from "./actions/auth";
+//import { store } from "./store";
+//import { loadToken } from "./actions/auth";
 
 import ScrollToTop from "./components/router/ScrollToTop";
 import Header from "./components/layout/Header";
@@ -19,10 +19,10 @@ import Alert from "./components/layout/Alert";
 import Orders from "./components/orders/Order";
 
 const App = () => {
-  useEffect(() => {
+  /* useEffect(() => {
     store.dispatch(loadToken());
   }, []);
-
+ */
   return (
     <Router>
       <Fragment>

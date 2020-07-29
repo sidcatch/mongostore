@@ -1,4 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+//import { } from "../../actions/auth";
+import PropTypes from "prop-types";
 
 import Spinner from "../graphics/Spinner";
 import Addresses from "./Addresses";
@@ -11,9 +15,7 @@ import profileImg from "../../icons/profile.svg";
 
 import axios from "axios";
 
-const Profile = () => {
-  const token = localStorage.getItem("token");
-
+const Profile = ({ token }) => {
   const [formState, setFormState] = useState({
     savedName: "",
     name: "",
@@ -37,17 +39,19 @@ const Profile = () => {
         },
       };
       try {
-        const res = await axios.get("/api/profile", config);
-        const { name, email, mobile } = res.data;
-        setFormState((prevState) => ({
-          ...prevState,
-          name,
-          savedName: name,
-          email,
-          savedEmail: email,
-          mobile: "+" + mobile,
-          profileLoading: false,
-        }));
+        if (token) {
+          const res = await axios.get("/api/profile", config);
+          const { name, email, mobile } = res.data;
+          setFormState((prevState) => ({
+            ...prevState,
+            name,
+            savedName: name,
+            email,
+            savedEmail: email,
+            mobile: "+" + mobile,
+            profileLoading: false,
+          }));
+        }
       } catch (err) {
         const error = err.response.data;
         console.log(error);
@@ -186,7 +190,6 @@ const Profile = () => {
     }));
   };
 
-  //if (!isAuthenticated) return <Redirect to="/" />;
   let content = profileLoading ? (
     <div className={cx(globalStyles.flexCenter, globalStyles["mt-2"])}>
       <Spinner />
@@ -292,6 +295,8 @@ const Profile = () => {
     </Fragment>
   );
 
+  if (!token) return <Redirect to="/" />;
+
   return (
     <Fragment>
       <section className={profileStyles.formContainer}>
@@ -306,9 +311,19 @@ const Profile = () => {
         </h1>
         {content}
       </section>
-      <Addresses />
+      <div className={profileStyles.addressesContainer}>
+        <Addresses />
+      </div>
     </Fragment>
   );
 };
 
-export default Profile;
+Profile.propTypes = {
+  token: PropTypes.string,
+};
+
+const mapStateToProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStateToProps)(Profile);

@@ -1,6 +1,5 @@
 .addresses {
-  width: 50%;
-  margin: auto;
+  width: 100%;
 }
 .addressContainer {
   width: 100%;
@@ -16,7 +15,7 @@
 }
 #manageAddresses {
   font-size: 1rem;
-  width: 50%;
+  width: 100%;
   margin: auto;
   padding: 0 1.3rem;
   margin-top: 2rem;
@@ -73,8 +72,9 @@
   cursor: pointer;
   padding-bottom: 0.3rem;
   font-weight: bold;
-  position: absolute;
-  left: 70%;
+}
+.editContainer {
+  text-align: right;
 }
 
 .submit {

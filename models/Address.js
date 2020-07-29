@@ -26,4 +26,4 @@ const AddressSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("address", ProfileSchema);
+module.exports = mongoose.model("address", AddressSchema);

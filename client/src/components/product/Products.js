@@ -71,7 +71,7 @@ const Products = ({ match }) => {
         });
       } catch (err) {
         console.log(err);
-        console.log(err.response.data);
+        //console.log(err.response.data);
         setProductsState((p) => ({ ...p, productsLoading: false }));
       }
     })();
@@ -106,7 +106,7 @@ const Products = ({ match }) => {
                 />
               );
             })
-          : dummyArray.map((dummy, index) => {
+          : dummyArray.slice(0, 10).map((dummy, index) => {
               return <ProductProxy key={index} />;
             })}
 
