@@ -214,7 +214,7 @@ router.delete("/address/:id", auth, async (req, res) => {
     profile.addresses = addresses;
     await profile.save();
 
-    return res.status(404).json(addressId);
+    return res.status(200).json(addressId);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

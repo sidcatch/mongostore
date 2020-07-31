@@ -1,13 +1,37 @@
+.addAddress {
+  border: none;
+  background-color: white;
+  width: 100%;
+
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--light-color);
+  outline: none;
+}
+.addAddress:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  cursor: pointer;
+  font-weight: bold;
+}
+
 .addresses {
   width: 100%;
 }
+
 .addressContainer {
   width: 100%;
-
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px solid var(--light-color);
+}
+.selectableAddressContainer {
+  width: 100%;
+}
+.selectableAddressContainer:hover {
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
 }
 
 #address {
@@ -70,7 +94,6 @@
 .edit {
   color: var(--primary-color);
   cursor: pointer;
-  padding-bottom: 0.3rem;
   font-weight: bold;
 }
 .editContainer {

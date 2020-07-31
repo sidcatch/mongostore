@@ -1,21 +1,44 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 //import { Link } from "react-router-dom";
 
 import checkoutStyles from "./Checkout.module.css";
 
-import Address from "../profile/Address";
 import CreditCard from "./CreditCard";
+import Addresses from "../profile/Addresses";
 
 //can become a form or simply a display. reuse this in checkout
 const Checkout = () => {
+  const [checkoutState, setCheckoutState] = useState({
+    addressSelected: false,
+  });
+
+  const onSelectAddress = (addressId) => {
+    console.log(addressId);
+    setCheckoutState((prevState) => ({ ...prevState, addressSelected: true }));
+  };
+
+  const unSelectAddress = () => {
+    setCheckoutState((prevState) => ({ ...prevState, addressSelected: false }));
+  };
+
   return (
     <Fragment>
       <div className={checkoutStyles.checkout}>
         <div className={checkoutStyles.deliveryOptions}>
           <div className={checkoutStyles.deliveryAddress}>
             <h2>Select Delivery Address</h2>
-            <Address />
-            <Address />
+            {checkoutState.addressSelected && (
+              <button onClick={unSelectAddress}>Change</button>
+            )}
+
+            <div className={checkoutStyles.addressesContainer}>
+              <Addresses
+                showHeader={false}
+                selectable={true}
+                selected={checkoutState.addressSelected}
+                onSelect={onSelectAddress}
+              />
+            </div>
           </div>
           <div className={checkoutStyles.paymentOptions}>
             <h2>Select Payment Method</h2>

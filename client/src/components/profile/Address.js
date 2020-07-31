@@ -1,81 +1,49 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
 import cx from "classnames";
 import globalStyles from "../../Global.module.css";
 import addressStyles from "./Address.module.css";
+
+import Spinner from "../graphics/Spinner";
 /*
 import axios from "axios"; */
 
-const Address = () => {
-  //const token = localStorage.getItem("token");
-
-  const [formState, setFormState] = useState({
-    name: "Abdualla",
-    mobile: "34534543",
-    address: "3453-345-43534/5 bebe mongy Old town, laugh Road",
-    city: "Hyderabad",
-    state: "Telangana",
-    pincode: "50000",
-    editable: true,
-    edit: true,
-    selectable: false,
-    saving: false,
-  });
-
-  const {
-    name,
-    mobile,
-    address,
-    city,
-    state,
-    pincode,
-    editable,
-    edit,
-    //saving,
-  } = formState;
-
-  const onChange = (e) => {
-    let nextFormState = { ...formState, [e.target.name]: e.target.value };
-    setFormState(nextFormState);
-  };
-
-  const onSubmit = async (e) => {
+const Address = ({
+  id,
+  name,
+  mobile,
+  address,
+  city,
+  state,
+  pincode,
+  editable,
+  edit,
+  loading,
+  hasEmptyField,
+  onChange,
+  onSubmit,
+  toggleEdit,
+  deletable,
+  onDelete,
+}) => {
+  const noSubmit = (e) => {
+    // e.persist();
     e.preventDefault();
-
-    /* const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": token,
-      },
-    }; */
-    try {
-      setFormState({ ...formState, saving: true });
-      //const res = await axios.put("/api/profile", { name }, config);
-      setFormState({
-        saving: false,
-        showForm: false,
-      });
-    } catch (err) {
-      setFormState({
-        saving: false,
-      });
-
-      console.log(err);
-    }
-  };
-
-  const toggleEdit = () => {
-    setFormState((prevState) => ({
-      ...prevState,
-      edit: !prevState.edit,
-    }));
   };
 
   let form = (
     <Fragment>
-      <form className={addressStyles.form} onSubmit={(e) => onSubmit(e)}>
+      <form
+        className={addressStyles.form}
+        onSubmit={(e) => {
+          !hasEmptyField ? onSubmit(e, id) : noSubmit(e);
+        }}
+      >
         <div className={addressStyles.editContainer}>
-          <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
+          <small
+            className={cx(addressStyles.edit)}
+            onClick={(e) => toggleEdit(e, id)}
+          >
             cancel
           </small>
         </div>
@@ -87,7 +55,7 @@ const Address = () => {
               name="name"
               value={name}
               autoComplete="off"
-              onChange={(e) => onChange(e)}
+              onChange={(e) => onChange(e, id)}
             />
           </div>
           <div className={addressStyles.mobileField}>
@@ -97,7 +65,7 @@ const Address = () => {
               name="mobile"
               value={mobile}
               autoComplete="off"
-              onChange={(e) => onChange(e)}
+              onChange={(e) => onChange(e, id)}
             />
           </div>
         </div>
@@ -108,7 +76,7 @@ const Address = () => {
             name="address"
             value={address}
             autoComplete="off"
-            onChange={(e) => onChange(e)}
+            onChange={(e) => onChange(e, id)}
           />
         </div>
         <div className={addressStyles.cityAndState}>
@@ -119,7 +87,7 @@ const Address = () => {
               name="city"
               value={city}
               autoComplete="off"
-              onChange={(e) => onChange(e)}
+              onChange={(e) => onChange(e, id)}
             />
           </div>
           <div className={addressStyles.stateField}>
@@ -129,7 +97,7 @@ const Address = () => {
               name="state"
               value={state}
               autoComplete="off"
-              onChange={(e) => onChange(e)}
+              onChange={(e) => onChange(e, id)}
             />
           </div>
         </div>
@@ -140,17 +108,26 @@ const Address = () => {
             name="pincode"
             value={pincode}
             autoComplete="off"
-            onChange={(e) => onChange(e)}
+            onChange={(e) => onChange(e, id)}
           />
         </div>
         <input
           type="submit"
-          className={cx(globalStyles.btn, addressStyles.submit)}
+          className={cx(
+            { [globalStyles.inactiveBtn]: hasEmptyField },
+            { [globalStyles.btn]: !hasEmptyField },
+            addressStyles.submit
+          )}
           value="save"
         />
-        <small className={cx(addressStyles.edit, addressStyles.delete)}>
-          delete
-        </small>
+        {deletable && (
+          <small
+            className={cx(addressStyles.edit, addressStyles.delete)}
+            onClick={() => onDelete(id)}
+          >
+            delete
+          </small>
+        )}
       </form>
     </Fragment>
   );
@@ -160,7 +137,10 @@ const Address = () => {
       <div className={addressStyles.addressDisplay}>
         {editable && (
           <div className={addressStyles.editContainer}>
-            <small className={cx(addressStyles.edit)} onClick={toggleEdit}>
+            <small
+              className={cx(addressStyles.edit)}
+              onClick={(e) => toggleEdit(e, id)}
+            >
               edit
             </small>
           </div>
@@ -178,13 +158,20 @@ const Address = () => {
     </Fragment>
   );
 
-  return (
-    <Fragment>
-      <section className={addressStyles.addressContainer}>
-        {edit ? form : addressDisplay}
-      </section>
-    </Fragment>
-  );
+  if (loading)
+    return (
+      <Fragment>
+        <div className={cx(globalStyles.flexCenter)}>
+          <Spinner />
+        </div>
+      </Fragment>
+    );
+
+  return <Fragment>{edit ? form : addressDisplay}</Fragment>;
+};
+
+Address.defaultProps = {
+  deletable: true,
 };
 
 export default Address;

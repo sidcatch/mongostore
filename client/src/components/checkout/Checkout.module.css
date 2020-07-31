@@ -22,6 +22,10 @@
 .orderSummary h3 {
   margin: 0.5rem 0px;
 }
+
+.addressesContainer {
+  width: 100%;
+}
 .deliveryAddress {
   border: 1px solid var(--light-color);
   padding: 1rem;
