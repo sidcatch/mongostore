@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 //import { Link } from "react-router-dom";
 
 import Item from "./Item";
@@ -11,29 +11,49 @@ import dropdownCloseImg from "../../icons/dropdown-close.svg";
 import dropdownOpenImg from "../../icons/dropdown-open.svg";
 
 //can become a form or simply a display. reuse this in checkout
-const Order = () => {
+const Order = ({
+  status,
+  estimatedArrivalDate,
+  totalAmount,
+  items,
+  paymentMethod,
+}) => {
+  const [orderState, setOrderState] = useState({ showItems: false });
+
+  let { showItems } = orderState;
+
+  const toggleShowItems = () => {
+    setOrderState((prevState) => ({
+      ...prevState,
+      showItems: !prevState.showItems,
+    }));
+  };
+
   return (
     <Fragment>
-      <div className={ordersStyles.order}>
+      <div className={ordersStyles.order} onClick={toggleShowItems}>
         <div className={ordersStyles.statusIcon}></div>
-        <p className={ordersStyles.status}>Arriving On</p>
-        <p className={ordersStyles.time}>2020/3/21</p>
-        <p className={ordersStyles.amount}>Amount : ₹500</p>
-        <p className={ordersStyles.noOfItems}>5 items</p>
-        <p className={ordersStyles.payment}>Cash On delivery</p>
+        <p className={ordersStyles.status}>{status}</p>
+        <p className={ordersStyles.time}>
+          {estimatedArrivalDate.split("T")[0]}
+        </p>
+        <p className={ordersStyles.amount}>Amount : ₹{totalAmount}</p>
+        <p className={ordersStyles.noOfItems}>{items.length} items</p>
+        <p className={ordersStyles.payment}>{paymentMethod}</p>
         <img
           className={cx(
             ordersStyles.dropdownCloseOpenIcon,
             globalStyles.smallIcon
           )}
-          src={/* showDropdown ? dropdownOpenImg :  */ dropdownCloseImg}
+          src={showItems ? dropdownOpenImg : dropdownCloseImg}
           alt="down-arrow"
         />
       </div>
-      <Item title={"Refined Oil"} price={108} quantity={1} />
-      <Item title={"Refined Oil"} price={108} quantity={1} />
-      <Item title={"Refined Oil"} price={108} quantity={1} />
-      <Item title={"Refined Oil"} price={108} quantity={1} />
+
+      {showItems &&
+        items.map(({ title, quantity, price, _id }) => (
+          <Item title={title} price={price} quantity={quantity} key={_id} />
+        ))}
     </Fragment>
   );
 };
