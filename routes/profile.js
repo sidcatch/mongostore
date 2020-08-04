@@ -5,7 +5,6 @@ const { check, validationResult } = require("express-validator");
 const Profile = require("../models/Profile");
 const Address = require("../models/Address");
 const auth = require("../middleware/auth");
-const { ConnectionStates } = require("mongoose");
 
 //@route GET /api/profile/
 //@desc get profile

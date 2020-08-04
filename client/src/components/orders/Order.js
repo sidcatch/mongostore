@@ -11,7 +11,7 @@ import dropdownCloseImg from "../../icons/dropdown-close.svg";
 import dropdownOpenImg from "../../icons/dropdown-open.svg";
 
 //can become a form or simply a display. reuse this in checkout
-const Columns = () => {
+const Order = () => {
   return (
     <Fragment>
       <div className={ordersStyles.order}>
@@ -20,6 +20,7 @@ const Columns = () => {
         <p className={ordersStyles.time}>2020/3/21</p>
         <p className={ordersStyles.amount}>Amount : ₹500</p>
         <p className={ordersStyles.noOfItems}>5 items</p>
+        <p className={ordersStyles.payment}>Cash On delivery</p>
         <img
           className={cx(
             ordersStyles.dropdownCloseOpenIcon,
@@ -37,4 +38,4 @@ const Columns = () => {
   );
 };
 
-export default Columns;
+export default Order;
