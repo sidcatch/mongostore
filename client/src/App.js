@@ -16,7 +16,7 @@ import Categories from "./components/product/Categories";
 import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
 import Alert from "./components/layout/Alert";
-import Orders from "./components/orders/Order";
+import Orders from "./components/orders/Orders";
 
 const App = () => {
   /* useEffect(() => {

@@ -9,7 +9,11 @@ const app = express();
 connectDB();
 
 //Use Nginx in production
-app.use("/public", express.static(path.join(__dirname, "public")));
+//app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(
+  "/public",
+  express.static(path.join(__dirname, "..", "..", "..", "AWS", "public"))
+);
 
 app.use(express.json({ extended: false }));
 

@@ -45,3 +45,15 @@
   padding: 1rem;
   border: 1px solid var(--light-color);
 }
+.paymentOptionSelectable {
+  width: 100%;
+}
+.paymentOptionSelectable:hover {
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+}
+
+.submit {
+  margin-top: 1rem;
+  margin-left: auto;
+}

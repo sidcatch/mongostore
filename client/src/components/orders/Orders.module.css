@@ -1,0 +1,53 @@
+.orders {
+  width: 70%;
+  margin: auto;
+}
+
+.order {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2rem;
+  background-color: var(--very-light-color);
+}
+.statusIcon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: yellow;
+  border: 1px solid black;
+  margin: 20px;
+}
+.status,
+.time,
+.amount,
+.noOfItems {
+  flex: 1;
+  padding: 20px;
+}
+
+.dropdownCloseOpenIcon {
+  margin: 20px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1rem;
+
+  list-style-type: none;
+  border-bottom: 1px solid var(--light-color);
+}
+
+.title,
+.price,
+.quantity,
+.subTotal {
+  flex: 1;
+  text-align: center;
+  padding: 6px;
+}
+
+.subTotal {
+  font-weight: bold;
+}

@@ -21,16 +21,18 @@ const Cart = ({ items, emptyCart }) => {
     <Fragment>
       <div className={cartStyles.cart}>
         <Columns />
+        <div className={cartStyles.items}>
+          {items.map(({ title, price, quantity, id }) => (
+            <Item
+              title={title}
+              price={price}
+              quantity={quantity}
+              id={id}
+              key={id}
+            />
+          ))}
+        </div>
 
-        {items.map(({ title, price, quantity, id }) => (
-          <Item
-            title={title}
-            price={price}
-            quantity={quantity}
-            id={id}
-            key={id}
-          />
-        ))}
         {items.length > 0 && (
           <Link to={"/checkout"} style={{ textDecoration: "none" }}>
             <button className={cx(globalStyles.btn, cartStyles.checkout)}>
