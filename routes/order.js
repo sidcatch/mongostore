@@ -78,7 +78,7 @@ router.get("/all", auth, async (req, res) => {
 //@route PUT /api/order/payment/:orderID
 //@desc order payment
 //@access Private
-router.put("/payment/:orderID", auth, async (req, res) => {
+/* router.put("/payment/:orderID", auth, async (req, res) => {
   let orderID = req.params.orderID;
   const { stripeToken } = req.body;
 
@@ -110,6 +110,6 @@ router.put("/payment/:orderID", auth, async (req, res) => {
     console.log(err.message);
     res.status(500).send("server error");
   }
-});
+}); */
 
 module.exports = router;

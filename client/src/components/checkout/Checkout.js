@@ -75,6 +75,7 @@ const Checkout = ({ items, emptyCart, token }) => {
   };
 
   const placeOrder = async (stripeToken) => {
+    if (!selectedAddressId) return;
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +101,7 @@ const Checkout = ({ items, emptyCart, token }) => {
 
       let orderID = res.data;
 
-      if (paymentMode === CARD) {
+      /* if (paymentMode === CARD) {
         const config = {
           headers: {
             "Content-Type": "application/json",
@@ -115,7 +116,7 @@ const Checkout = ({ items, emptyCart, token }) => {
         );
 
         console.log(res);
-      }
+      } */
 
       setCheckoutState((prevState) => ({
         ...prevState,

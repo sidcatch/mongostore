@@ -21,7 +21,7 @@ const Categories = ({ category }) => {
 
   return (
     <Fragment>
-      {categories.slice(0, 1).map((category, index) => (
+      {categories.map((category, index) => (
         <CategoryPreview category={category} key={index} />
       ))}
     </Fragment>
