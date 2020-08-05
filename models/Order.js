@@ -17,6 +17,7 @@ const OrderSchema = new mongoose.Schema({
   },
   paymentStatus: {
     type: String,
+    default: "unpaid",
   },
   paymentMethod: {
     type: String,

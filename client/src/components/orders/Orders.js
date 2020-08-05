@@ -31,7 +31,7 @@ const Orders = ({ token }) => {
       };
       try {
         if (token) {
-          const res = await axios.get("/api/order", config);
+          const res = await axios.get("/api/order/all", config);
           setOrders(res.data);
           setOrdersState((prevState) => ({ ...prevState, loading: false }));
         }

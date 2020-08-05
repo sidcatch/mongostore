@@ -10,6 +10,7 @@ import globalStyles from "../../Global.module.css";
 
 import Addresses from "../profile/Addresses";
 import Spinner from "../graphics/Spinner";
+import StripeCheckout from "react-stripe-checkout";
 
 import axios from "axios";
 
@@ -73,7 +74,7 @@ const Checkout = ({ items, emptyCart, token }) => {
     }));
   };
 
-  const placeOrder = async () => {
+  const placeOrder = async (stripeToken) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -97,7 +98,24 @@ const Checkout = ({ items, emptyCart, token }) => {
         config
       );
 
-      console.log("Order ID : " + res.data);
+      let orderID = res.data;
+
+      if (paymentMode === CARD) {
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            "x-auth-token": token,
+          },
+        };
+
+        const res = await axios.put(
+          `/api/order/payment/${orderID}`,
+          { stripeToken },
+          config
+        );
+
+        console.log(res);
+      }
 
       setCheckoutState((prevState) => ({
         ...prevState,
@@ -192,18 +210,39 @@ const Checkout = ({ items, emptyCart, token }) => {
               <div className={checkoutStyles.paymentOption}>
                 <h4>{paymentMode}</h4>
 
-                <button
-                  className={cx(
-                    { [globalStyles.btn]: addressSelected },
-                    checkoutStyles.submit,
-                    {
-                      [globalStyles.inactiveBtn]: !addressSelected,
-                    }
-                  )}
-                  onClick={placeOrder}
-                >
-                  Place order
-                </button>
+                {paymentMode === COD ? (
+                  <button
+                    className={cx(
+                      { [globalStyles.btn]: addressSelected },
+                      checkoutStyles.submit,
+                      {
+                        [globalStyles.inactiveBtn]: !addressSelected,
+                      }
+                    )}
+                    onClick={placeOrder}
+                  >
+                    Place order
+                  </button>
+                ) : (
+                  <StripeCheckout
+                    stripeKey={process.env.REACT_APP_STRIPEKEY}
+                    token={placeOrder}
+                    amount={total * 100}
+                    currency="inr"
+                  >
+                    <button
+                      className={cx(
+                        { [globalStyles.btn]: addressSelected },
+                        checkoutStyles.submit,
+                        {
+                          [globalStyles.inactiveBtn]: !addressSelected,
+                        }
+                      )}
+                    >
+                      Place order
+                    </button>
+                  </StripeCheckout>
+                )}
               </div>
             )}
           </div>

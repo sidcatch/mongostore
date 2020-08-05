@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 
+const cors = require("cors");
+
 const connectDB = require("./db");
 
 const app = express();
@@ -16,6 +18,7 @@ app.use(
 );
 
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 //Define Routes
 app.use("/api/auth", require("./routes/auth"));
