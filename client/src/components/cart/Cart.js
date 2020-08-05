@@ -12,7 +12,7 @@ import cartStyles from "./Cart.module.css";
 import globalStyles from "../../Global.module.css";
 
 //can become a form or simply a display. reuse this in checkout
-const Cart = ({ items, emptyCart }) => {
+const Cart = ({ items, emptyCart, token }) => {
   let total = 0;
   items.forEach(({ price, quantity }) => {
     total = total + price * quantity;
@@ -34,7 +34,10 @@ const Cart = ({ items, emptyCart }) => {
         </div>
 
         {items.length > 0 && (
-          <Link to={"/checkout"} style={{ textDecoration: "none" }}>
+          <Link
+            to={`${token ? "/checkout" : "/login"}`}
+            style={{ textDecoration: "none" }}
+          >
             <button className={cx(globalStyles.btn, cartStyles.checkout)}>
               Checkout
             </button>
@@ -53,10 +56,12 @@ const Cart = ({ items, emptyCart }) => {
 Cart.propTypes = {
   items: PropTypes.array,
   emptyCart: PropTypes.func.isRequired,
+  token: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   items: state.cart,
+  token: state.auth.token,
 });
 
 const mapDispatchToProps = {

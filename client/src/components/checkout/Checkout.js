@@ -99,7 +99,9 @@ const Checkout = ({ items, emptyCart, token }) => {
         config
       );
 
-      let orderID = res.data;
+      console.log(res.data);
+
+      //let orderID = res.data;
 
       /* if (paymentMode === CARD) {
         const config = {
@@ -149,6 +151,8 @@ const Checkout = ({ items, emptyCart, token }) => {
     })); */
     return <Redirect to="/orders" />;
   }
+
+  if (!token) return <Redirect to="/" />;
 
   return (
     <Fragment>

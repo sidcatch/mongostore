@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-//import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 //import { emptyCart } from "../../actions/cart";
 import PropTypes from "prop-types";
@@ -53,6 +53,8 @@ const Orders = ({ token }) => {
         </div>
       </Fragment>
     );
+
+  if (!token) return <Redirect to="/" />;
 
   return (
     <Fragment>
