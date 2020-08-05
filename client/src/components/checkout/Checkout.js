@@ -11,11 +11,18 @@ import globalStyles from "../../Global.module.css";
 import Addresses from "../profile/Addresses";
 import Spinner from "../graphics/Spinner";
 
+import axios from "axios";
+
 const COD = "Cash On Delivery";
 const CARD = "Credit Card / Debit Card";
 
 //can become a form or simply a display. reuse this in checkout
-const Checkout = ({ items, emptyCart }) => {
+const Checkout = ({ items, emptyCart, token }) => {
+  let total = 0;
+  items.forEach(({ price, quantity }) => {
+    total = total + price * quantity;
+  });
+
   const [checkoutState, setCheckoutState] = useState({
     orderPlaced: false,
     addressSelected: false,
@@ -66,11 +73,44 @@ const Checkout = ({ items, emptyCart }) => {
     }));
   };
 
-  const placeOrder = () => {
-    setCheckoutState((prevState) => ({
-      ...prevState,
-      orderPlaced: true,
-    }));
+  const placeOrder = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+    };
+
+    try {
+      let itemsToSend = items.map(({ id, quantity }) => ({
+        productID: id,
+        quantity,
+      }));
+      let deliveryAddress = selectedAddressId;
+      let paymentMethod = paymentMode;
+
+      setCheckoutState((prevState) => ({ ...prevState, loading: true }));
+
+      const res = await axios.post(
+        "/api/order",
+        { items: itemsToSend, deliveryAddress, paymentMethod },
+        config
+      );
+
+      console.log("Order ID : " + res.data);
+
+      setCheckoutState((prevState) => ({
+        ...prevState,
+        orderPlaced: true,
+        loading: false,
+      }));
+
+      emptyCart();
+    } catch (err) {
+      console.log("failed to post Order");
+      setCheckoutState((prevState) => ({ ...prevState, loading: false }));
+      console.log(err);
+    }
   };
 
   if (loading)
@@ -170,9 +210,9 @@ const Checkout = ({ items, emptyCart }) => {
         </div>
         <div className={checkoutStyles.orderSummary}>
           <h2>Order Summary</h2>
-          <h3>Basket Value: ₹3000</h3>
-          <h3>Delivery Charge: ₹50</h3>
-          <h3>Total Amount: ₹3050</h3>
+          <h3>Basket Value: ₹{total}</h3>
+          <h3>Delivery Charge: FREE</h3>
+          <h3>Total Amount: ₹{total}</h3>
         </div>
       </div>
     </Fragment>
@@ -182,10 +222,12 @@ const Checkout = ({ items, emptyCart }) => {
 Checkout.propTypes = {
   items: PropTypes.array,
   emptyCart: PropTypes.func.isRequired,
+  token: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
   items: state.cart,
+  token: state.auth.token,
 });
 
 const mapDispatchToProps = {
