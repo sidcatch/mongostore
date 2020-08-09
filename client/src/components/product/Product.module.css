@@ -23,6 +23,8 @@
   margin: 5px 15px;
   width: 150px;
   flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .amount {
