@@ -11,12 +11,17 @@ import SignUp from "./components/auth/SignUp";
 import Login from "./components/auth/Login";
 import Profile from "./components/profile/Profile";
 import Products from "./components/product/Products";
-import Advertisement from "./components/graphics/Advertisement";
+import Carousel from "./components/graphics/Carousel";
 import Categories from "./components/product/Categories";
 import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
 import Alert from "./components/layout/Alert";
 import Orders from "./components/orders/Orders";
+
+let img1 = "/public/large-images/foodgrains.webp";
+let img2 = "/public/large-images/kitchen.webp";
+let img3 = "/public/large-images/meat.webp";
+const images = [img1, img2, img3];
 
 const App = () => {
   /* useEffect(() => {
@@ -29,7 +34,18 @@ const App = () => {
         <ScrollToTop />
         <Header />
         <Alert />
-        <Route exact path="/" component={Advertisement} />
+
+        <Route
+          exact
+          path="/"
+          render={(props) => (
+            <Carousel
+              images={images}
+              carouselWidth={90}
+              carouselWidthUnit="vw"
+            />
+          )}
+        />
 
         <Switch>
           <Route exact path="/" component={Categories} />

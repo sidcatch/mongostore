@@ -1,0 +1,42 @@
+.carouselContainer {
+  margin: auto;
+  /* margin-top: 70px; */
+  position: relative;
+  /* border-top: 20px solid black;
+  border-bottom: 20px solid black; */
+  overflow: hidden;
+}
+.carouselSlide {
+  display: flex;
+}
+
+.prevBtn {
+  border: none;
+  background: none;
+  outline: none;
+
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  left: 0;
+
+  cursor: pointer;
+}
+
+.nextBtn {
+  border: none;
+  background: none;
+  outline: none;
+
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  right: 0;
+
+  cursor: pointer;
+}
+
+.prevImg,
+.nextImg {
+  height: 60px;
+}
