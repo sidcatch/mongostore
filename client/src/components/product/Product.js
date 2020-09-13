@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { addToCart, incrementItem, decrementItem } from "../../actions/cart";
 import PropTypes from "prop-types";
 
+/* import HeaderFloatingCart from "../layout/HeaderFloatingCart"; */
+
 import ProductStyles from "./Product.module.css";
 
 const Product = ({
@@ -19,6 +21,7 @@ const Product = ({
   let itemInCart = itemsInCart.find((item) => item.id === id);
   return (
     <Fragment>
+      {/* <HeaderFloatingCart /> */}
       <div className={ProductStyles.productContainer}>
         <div className={ProductStyles.imageContainer}>
           <img className={ProductStyles.image} src={image} alt="product" />

@@ -5,19 +5,18 @@ import carouselStyles from "./Carousel.module.css";
 import prevImg from "./prev.svg";
 import nextImg from "./next.svg";
 
-let interval;
-
+let timer;
 const INTERVAL = 3000;
 const resetInterval = (prevInterval, setState) => {
   clearInterval(prevInterval);
-  let interval = setInterval(() => {
+  let timer = setInterval(() => {
     setState((prevState) => ({
       ...prevState,
       counter: prevState.counter + 1,
       shouldTransition: true,
     }));
   }, INTERVAL);
-  return interval;
+  return timer;
 };
 
 const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
@@ -28,17 +27,18 @@ const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
   let { counter, shouldTransition } = carouselState;
 
   useEffect(() => {
-    interval = setInterval(() => {
+    timer = setInterval(() => {
       setCarouselState((prevState) => ({
         ...prevState,
         counter: prevState.counter + 1,
         shouldTransition: true,
       }));
     }, INTERVAL);
+    return () => clearTimeout(timer);
   }, []);
 
   const next = () => {
-    interval = resetInterval(interval, setCarouselState);
+    timer = resetInterval(timer, setCarouselState);
     if (counter > images.length) return;
     setCarouselState((prevState) => ({
       ...prevState,
@@ -48,7 +48,7 @@ const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
   };
 
   const previous = () => {
-    interval = resetInterval(interval, setCarouselState);
+    timer = resetInterval(timer, setCarouselState);
     if (counter < 1) return;
     setCarouselState((prevState) => ({
       ...prevState,

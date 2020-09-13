@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment /* , useEffect  */ } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Redux
@@ -18,21 +18,26 @@ import Checkout from "./components/checkout/Checkout";
 import Alert from "./components/layout/Alert";
 import Orders from "./components/orders/Orders";
 
+import HeaderFloatingCart from "./components/layout/HeaderFloatingCart";
+
 let img1 = "/public/large-images/foodgrains.webp";
 let img2 = "/public/large-images/kitchen.webp";
 let img3 = "/public/large-images/meat.webp";
 const images = [img1, img2, img3];
 
 const App = () => {
-  /* useEffect(() => {
-    store.dispatch(loadToken());
-  }, []);
- */
+  /*   useEffect(() => {
+    // store.dispatch(loadToken());
+    });
+  }, []); */
+
   return (
     <Router>
       <Fragment>
         <ScrollToTop />
         <Header />
+        <Route exact path="/" component={HeaderFloatingCart} />
+        <Route path="/products" component={HeaderFloatingCart} />
         <Alert />
 
         <Route

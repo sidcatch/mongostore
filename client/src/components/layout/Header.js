@@ -18,7 +18,7 @@ import logoutImg from "../../icons/logout.svg";
 import profileImg from "../../icons/profile.svg";
 import shoppingBagImg from "../../icons/shopping-bag.svg";
 
-const Header = ({ isAuthenticated, logout }) => {
+const Header = ({ isAuthenticated, logout, itemCount }) => {
   const dropDownItems = [
     { title: "Profile", icon: profileImg, link: "/profile" },
     { title: "Orders", icon: shoppingBagImg, link: "/orders" },
@@ -34,6 +34,7 @@ const Header = ({ isAuthenticated, logout }) => {
   const hideSlideMenu = () => {
     setSlideMenu(false);
   };
+
   return (
     <header>
       <img
@@ -59,9 +60,12 @@ const Header = ({ isAuthenticated, logout }) => {
         </Link>
       )}
 
-      <div>
+      <div className={headerStyles.cartContainer}>
         <Link to={"/cart"} style={{ textDecoration: "none" }}>
           <img className={headerStyles.cart} src={cart} alt="cart" />
+          {itemCount !== 0 && (
+            <div className={headerStyles.itemCount}> {itemCount}</div>
+          )}
         </Link>
       </div>
       <SlideMenu
@@ -77,10 +81,12 @@ const Header = ({ isAuthenticated, logout }) => {
 Header.propTypes = {
   isAuthenticated: PropTypes.bool,
   logout: PropTypes.func.isRequired,
+  itemCount: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.token !== null,
+  itemCount: state.cart.length,
 });
 
 const mapDispatchToProps = {

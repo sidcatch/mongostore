@@ -3,6 +3,19 @@
   padding: 0px;
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color: #f25797;
+  --primary-color-light: #eea4c3;
+  --secondary-color: #abff4f;
+  --secondary-color-light: #dbffb4;
+  --dark-color: #1c0f13;
+  --light-color: #6e7e85;
+  --very-light-color: #e7e7e7;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
 body {
   font-family: sans-serif;
 }
@@ -15,7 +28,7 @@ header {
   align-items: center;
   width: 70%;
   margin: auto;
-  margin-top: 0.5rem;
+  padding-top: 0.5rem;
   height: 10vh;
 }
 
