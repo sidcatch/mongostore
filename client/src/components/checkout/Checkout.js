@@ -10,10 +10,15 @@ import globalStyles from "../../Global.module.css";
 
 import Addresses from "../profile/Addresses";
 import Spinner from "../graphics/Spinner";
-import StripeCheckout from "react-stripe-checkout";
+//import StripeCheckout from "react-stripe-checkout";
+
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 
 import axios from "axios";
 
+const promise = loadStripe(process.env.REACT_APP_STRIPEKEY);
 const COD = "Cash On Delivery";
 const CARD = "Credit Card / Debit Card";
 
@@ -74,7 +79,9 @@ const Checkout = ({ items, emptyCart, token }) => {
     }));
   };
 
-  const placeOrder = async (stripeToken) => {
+  const placeOrder = async (/* stripeToken */) => {
+    //console.log("place order");
+    /* console.log(process.env.REACT_APP_STRIPEKEY); */
     if (!selectedAddressId) return;
     const config = {
       headers: {
@@ -229,24 +236,12 @@ const Checkout = ({ items, emptyCart, token }) => {
                     Place order
                   </button>
                 ) : (
-                  <StripeCheckout
-                    stripeKey={process.env.REACT_APP_STRIPEKEY}
-                    token={placeOrder}
-                    amount={total * 100}
-                    currency="inr"
-                  >
-                    <button
-                      className={cx(
-                        { [globalStyles.btn]: addressSelected },
-                        checkoutStyles.submit,
-                        {
-                          [globalStyles.inactiveBtn]: !addressSelected,
-                        }
-                      )}
-                    >
-                      Place order
-                    </button>
-                  </StripeCheckout>
+                  <Elements stripe={promise}>
+                    <CheckoutForm
+                      selectedAddressId={selectedAddressId}
+                      placeOrder={placeOrder}
+                    />
+                  </Elements>
                 )}
               </div>
             )}
@@ -279,3 +274,22 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
+
+/* <StripeCheckout
+  stripeKey={process.env.REACT_APP_STRIPEKEY}
+  token={placeOrder}
+  amount={total * 100}
+  currency="inr"
+>
+  <button
+    className={cx(
+      { [globalStyles.btn]: addressSelected },
+      checkoutStyles.submit,
+      {
+        [globalStyles.inactiveBtn]: !addressSelected,
+      }
+    )}
+  >
+    Place order
+  </button>
+</StripeCheckout> */

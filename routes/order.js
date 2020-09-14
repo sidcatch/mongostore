@@ -4,14 +4,57 @@ const router = express.Router();
 const config = require("config");
 
 const stripe = require("stripe")(config.get("stripeKey"));
-const { v4: uuid } = require("uuid");
+//const { v4: uuid } = require("uuid");
 
 const Profile = require("../models/Profile");
 const Product = require("../models/Product");
 const Order = require("../models/Order");
 
 const auth = require("../middleware/auth");
-const { TokenExpiredError } = require("jsonwebtoken");
+//const { TokenExpiredError } = require("jsonwebtoken");
+
+const COD = "Cash On Delivery";
+const CARD = "Credit Card / Debit Card";
+
+const getItemsWithTherePrices = async (items) => {
+  let productIDs = [];
+
+  items.forEach((item) => productIDs.push(item.productID));
+
+  let products = await Product.find({ _id: { $in: productIDs } });
+
+  let itemsWithTherePrices = [];
+  items.forEach((item, index) => {
+    let product = products.find((product) => item.productID == product._id);
+    if (product)
+      itemsWithTherePrices.push({
+        title: product.title,
+        price: product.price,
+        quantity: parseInt(item.quantity),
+      });
+    //else handle if product not found
+  });
+
+  /* let itemsWithTherePrices = items.map((item, index) => {
+    let product = products.find((product) => item.productID == product._id);
+
+    return {
+      title: product.title,
+      price: product.price,
+      quantity: parseInt(items[index].quantity),
+    };
+  }); */
+
+  return itemsWithTherePrices;
+};
+
+const calculateOrderAmount = (items) => {
+  let totalAmount = 0;
+  items.forEach((item) => {
+    totalAmount += item.price * item.quantity;
+  });
+  return totalAmount;
+};
 
 //@route POST /api/order/
 //@desc place order
@@ -23,7 +66,7 @@ router.post("/", auth, async (req, res) => {
     let profile = await Profile.findOne({ _id: req.profile.id });
     if (!profile) return res.status(404).json({ msg: "Profile not found" });
 
-    let productIDs = [];
+    /* let productIDs = [];
 
     items.forEach((item) => productIDs.push(item.productID));
 
@@ -34,16 +77,22 @@ router.post("/", auth, async (req, res) => {
       items[index].title = product.title;
       items[index].price = product.price;
       items[index].quantity = parseInt(items[index].quantity);
-    });
+    }); */
 
-    let totalAmount = 0;
+    let itemsToOrder = await getItemsWithTherePrices(items);
+
+    //console.log(itemsToOrder);
+    /* let totalAmount = 0;
     items.forEach((item) => {
       totalAmount += item.price * item.quantity;
-    });
+    }); */
+
+    let totalAmount = calculateOrderAmount(itemsToOrder);
+    //console.log(totalAmount);
 
     let order = new Order({
       user: profile._id,
-      items,
+      items: itemsToOrder,
       totalAmount,
       deliveryAddress,
       paymentMethod,
@@ -73,6 +122,22 @@ router.get("/all", auth, async (req, res) => {
     console.log(err.message);
     res.status(500).send("server error");
   }
+});
+
+router.post("/create-payment-intent", auth, async (req, res) => {
+  const { items } = req.body;
+
+  let itemsToOrder = await getItemsWithTherePrices(items);
+
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: calculateOrderAmount(itemsToOrder) * 100,
+    currency: "inr",
+  });
+
+  res.json({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
 
 //@route PUT /api/order/payment/:orderID
