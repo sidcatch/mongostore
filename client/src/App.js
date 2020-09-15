@@ -17,6 +17,7 @@ import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
 import Alert from "./components/layout/Alert";
 import Orders from "./components/orders/Orders";
+import Footer from "./components/layout/Footer";
 
 import HeaderFloatingCart from "./components/layout/HeaderFloatingCart";
 
@@ -35,39 +36,43 @@ const App = () => {
     <Router>
       <Fragment>
         <ScrollToTop />
-        <Header />
-        <Route exact path="/" component={HeaderFloatingCart} />
-        <Route path="/products" component={HeaderFloatingCart} />
-        <Alert />
+        <div className="everything-except-footer">
+          <Header />
+          <Route exact path="/" component={HeaderFloatingCart} />
+          <Route path="/products" component={HeaderFloatingCart} />
+          <Alert />
 
-        <Route
-          exact
-          path="/"
-          render={(props) => (
-            <Carousel
-              images={images}
-              carouselWidth={90}
-              carouselWidthUnit="vw"
-            />
-          )}
-        />
-
-        <Switch>
-          <Route exact path="/" component={Categories} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/profile" component={Profile} />
           <Route
             exact
-            path="/products/category/:category"
-            component={Products}
+            path="/"
+            render={(props) => (
+              <Carousel
+                images={images}
+                carouselWidth={90}
+                carouselWidthUnit="vw"
+              />
+            )}
           />
-          <Route exact path="/products/search" component={Products} />
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/checkout" component={Checkout} />
-          <Route exact path="/orders" component={Orders} />
-          <Route render={() => <h1>404 not found</h1>} />
-        </Switch>
+
+          <Switch>
+            <Route exact path="/" component={Categories} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
+            <Route
+              exact
+              path="/products/category/:category"
+              component={Products}
+            />
+            <Route exact path="/products/search" component={Products} />
+            <Route exact path="/cart" component={Cart} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route exact path="/orders" component={Orders} />
+            <Route render={() => <h1>404 not found</h1>} />
+          </Switch>
+        </div>
+
+        <Footer />
       </Fragment>
     </Router>
   );

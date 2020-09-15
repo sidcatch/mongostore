@@ -18,6 +18,7 @@
 
 body {
   font-family: sans-serif;
+  /* color: var(--dark-color); */
 }
 
 button {
@@ -30,6 +31,27 @@ header {
   margin: auto;
   padding-top: 0.5rem;
   height: 10vh;
+}
+
+.everything-except-footer {
+  min-height: calc(100vh - 10vh);
+}
+footer {
+  background-color: var(--dark-color);
+  color: var(--very-light-color);
+  color: var(--light-color);
+  height: 10vh;
+  line-height: 10vh;
+  /* width: 100vw; */
+}
+footer a {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  margin-left: 1rem;
+}
+footer a:hover {
+  color: var(--secondary-color);
 }
 
 @media screen and (max-width: 500px) {
