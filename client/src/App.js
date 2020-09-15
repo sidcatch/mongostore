@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import ScrollToTop from "./components/router/ScrollToTop";
 import Header from "./components/layout/Header";
+import Alert from "./components/layout/Alert";
 import SignUp from "./components/auth/SignUp";
 import Login from "./components/auth/Login";
 import Profile from "./components/profile/Profile";
@@ -15,7 +16,6 @@ import Carousel from "./components/graphics/Carousel";
 import Categories from "./components/product/Categories";
 import Cart from "./components/cart/Cart";
 import Checkout from "./components/checkout/Checkout";
-import Alert from "./components/layout/Alert";
 import Orders from "./components/orders/Orders";
 import Footer from "./components/layout/Footer";
 
@@ -38,9 +38,9 @@ const App = () => {
         <ScrollToTop />
         <div className="everything-except-footer">
           <Header />
+          <Alert />
           <Route exact path="/" component={HeaderFloatingCart} />
           <Route path="/products" component={HeaderFloatingCart} />
-          <Alert />
 
           <Route
             exact

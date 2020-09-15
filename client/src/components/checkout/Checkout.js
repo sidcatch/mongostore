@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { emptyCart } from "../../actions/cart";
+import { setAlert } from "../../actions/alert";
 import PropTypes from "prop-types";
 
 import cx from "classnames";
@@ -23,7 +24,7 @@ const COD = "Cash On Delivery";
 const CARD = "Credit Card / Debit Card";
 
 //can become a form or simply a display. reuse this in checkout
-const Checkout = ({ items, emptyCart, token }) => {
+const Checkout = ({ items, emptyCart, setAlert, token }) => {
   // console.log(match.url);
   let total = 0;
   items.forEach(({ price, quantity }) => {
@@ -135,6 +136,7 @@ const Checkout = ({ items, emptyCart, token }) => {
       }));
 
       emptyCart();
+      setAlert("Your order has been successfully placed!", "success");
     } catch (err) {
       console.log("failed to post Order");
       setCheckoutState((prevState) => ({ ...prevState, loading: false }));
@@ -262,6 +264,7 @@ const Checkout = ({ items, emptyCart, token }) => {
 Checkout.propTypes = {
   items: PropTypes.array,
   emptyCart: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
   token: PropTypes.string,
 };
 
@@ -272,6 +275,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   emptyCart,
+  setAlert,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

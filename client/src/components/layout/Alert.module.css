@@ -1,0 +1,15 @@
+.alert {
+  width: 80vw;
+  padding: 20px;
+
+  margin: auto;
+  margin-bottom: 1rem;
+
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+
+  background-color: var(--light-color);
+
+  text-align: center;
+  font-weight: bold;
+}
