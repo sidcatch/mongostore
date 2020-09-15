@@ -14,6 +14,10 @@
   padding: 1rem;
   border-bottom: 1px solid var(--light-color);
 }
+
+.noProducts {
+  grid-column: 1/-1;
+}
 .info {
   margin-left: 1rem;
 }

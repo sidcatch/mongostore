@@ -74,7 +74,7 @@ router.post(
     check("oneTimePassword", "OTP is required").not().isEmpty(),
     check(
       "password",
-      "Please enter a password with 8 or more characters"
+      "Please enter a password with six or more characters"
     ).isLength({ min: 6 }),
     check(
       "password",

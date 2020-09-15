@@ -57,3 +57,10 @@
 .subTotal {
   font-weight: bold;
 }
+.noOrders {
+  width: 200px;
+  margin: auto;
+
+  text-align: center;
+  font-weight: bold;
+}

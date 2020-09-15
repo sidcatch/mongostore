@@ -93,6 +93,12 @@ const Products = ({ match }) => {
           </p>
         </div>
 
+        {products.length === 0 && !productsLoading && (
+          <h3 className={ProductsStyles.noProducts}>
+            Sorry no products found.
+          </h3>
+        )}
+
         {!productsLoading
           ? products.map(({ image, title, amount, price, _id }) => {
               return (

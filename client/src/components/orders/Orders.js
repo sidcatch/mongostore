@@ -67,6 +67,10 @@ const Orders = ({ token }) => {
         />
         Orders
       </h1>
+
+      {orders.length === 0 && (
+        <p className={ordersStyles.noOrders}>No orders yet</p>
+      )}
       <div className={ordersStyles.orders}>
         {orders.map(
           ({
