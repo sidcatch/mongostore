@@ -33,7 +33,7 @@ const CategoryPreview = ({ category }) => {
         setProductsState({});
       } catch (err) {
         console.log(err);
-        console.log(err.response.data);
+        //console.log(err.response.data);
         setProductsState((p) => ({ ...p, productsLoading: false }));
       }
     })();

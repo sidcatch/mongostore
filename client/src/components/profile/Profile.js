@@ -152,7 +152,8 @@ const Profile = ({ token }) => {
         editEmail: false,
       });
     } catch (err) {
-      const errors = err.response.data.errors;
+      let errors = undefined;
+      if (err.response) errors = err.response.data.errors;
 
       console.log(errors);
       if (errors) {
