@@ -37,7 +37,7 @@ export const signup = (formState, setFormState) => async (dispatch) => {
       config
     );
 
-    console.log(res);
+    //console.log(res);
     //localStorage.setItem("token", res.data.token);
     dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
   } catch (err) {

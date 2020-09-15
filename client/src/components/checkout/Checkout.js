@@ -24,6 +24,7 @@ const CARD = "Credit Card / Debit Card";
 
 //can become a form or simply a display. reuse this in checkout
 const Checkout = ({ items, emptyCart, token }) => {
+  // console.log(match.url);
   let total = 0;
   items.forEach(({ price, quantity }) => {
     total = total + price * quantity;

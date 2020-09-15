@@ -104,7 +104,10 @@ const SignUp = ({ isAuthenticated, loading, signup }) => {
     }
   };
 
-  if (isAuthenticated) return <Redirect to="/" />;
+  if (isAuthenticated)
+    return (
+      <Redirect to={`${window.location.pathname.replace(/^\/signup/, "")}`} />
+    );
 
   let content = null;
 

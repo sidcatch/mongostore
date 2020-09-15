@@ -15,18 +15,18 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.2.5",
+    "config": "^3.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-validator": "^6.3.1",
+    "express-validator": "^6.6.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.10",
-    "nexmo": "^2.6.0",
+    "mongoose": "^5.10.5",
+    "nexmo": "^2.9.1",
     "stripe": "^8.96.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2"
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
   }
 }

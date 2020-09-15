@@ -13,6 +13,9 @@ import globalStyles from "../../Global.module.css";
 import close from "../../icons/close.svg";
 
 const Login = ({ isAuthenticated, loading, login }) => {
+  //console.log(window.location.pathname.replace(/^\/login/, ""));
+  //console.log(match.url);
+
   const [formState, setFormState] = useState({
     mobile: "",
     mobileError: null,
@@ -46,7 +49,10 @@ const Login = ({ isAuthenticated, loading, login }) => {
     login(formState, setFormState);
   };
 
-  if (isAuthenticated) return <Redirect to="/" />;
+  if (isAuthenticated)
+    return (
+      <Redirect to={`${window.location.pathname.replace(/^\/login/, "")}`} />
+    );
 
   let content = loading ? (
     <div className={cx(globalStyles.flexCenter, globalStyles["mt-2"])}>
@@ -84,7 +90,10 @@ const Login = ({ isAuthenticated, loading, login }) => {
         <input type="submit" className={globalStyles.btn} value="Login" />
       </div>
 
-      <Link to={"/signup"} style={{ textDecoration: "none" }}>
+      <Link
+        to={`/signup${window.location.pathname.replace(/^\/login/, "")}`}
+        style={{ textDecoration: "none" }}
+      >
         <div className={globalStyles["mt-1"]}>
           <small className={globalStyles.smallLink}>
             New User? Create an account

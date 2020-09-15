@@ -35,7 +35,7 @@ const Cart = ({ items, emptyCart, token }) => {
 
         {items.length > 0 && (
           <Link
-            to={`${token ? "/checkout" : "/login"}`}
+            to={`${token ? "/checkout" : "/login/checkout"}`}
             style={{ textDecoration: "none" }}
           >
             <button className={cx(globalStyles.btn, cartStyles.checkout)}>
