@@ -75,7 +75,7 @@ router.post(
     check(
       "password",
       "Please enter a password with 8 or more characters"
-    ).isLength({ min: 8 }),
+    ).isLength({ min: 6 }),
     check(
       "password",
       "Password should contain at least one lowercase letter"
@@ -83,10 +83,10 @@ router.post(
     check("password", "Password should contain at least one digit").matches(
       /\d/
     ),
-    check(
+    /* check(
       "password",
       "Password should contain at least one special character"
-    ).matches(/[^a-zA-Z0-9]/),
+    ).matches(/[^a-zA-Z0-9]/), */
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -137,7 +137,7 @@ router.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 360000 },
+        { expiresIn: "365d" },
         (err, token) => {
           if (err) throw err;
 
@@ -204,7 +204,7 @@ router.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 360000 },
+        { expiresIn: "365d" },
         (err, token) => {
           if (err) throw err;
           res.status(200).json({ token });

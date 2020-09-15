@@ -169,13 +169,18 @@ const Checkout = ({ items, emptyCart, setAlert, token }) => {
       <div className={checkoutStyles.checkout}>
         <div className={checkoutStyles.deliveryOptions}>
           <div className={checkoutStyles.deliveryAddress}>
-            <h2>
+            <h2 className={checkoutStyles.heading}>
               {!addressSelected
                 ? "Select Delivery Address"
                 : "Delivery Address"}
             </h2>
             {addressSelected && (
-              <button onClick={unSelectAddress}>Change</button>
+              <button
+                className={checkoutStyles.change}
+                onClick={unSelectAddress}
+              >
+                Change
+              </button>
             )}
 
             <div className={checkoutStyles.addressesContainer}>
@@ -188,13 +193,18 @@ const Checkout = ({ items, emptyCart, setAlert, token }) => {
             </div>
           </div>
           <div className={checkoutStyles.paymentOptions}>
-            <h2>
+            <h2 className={checkoutStyles.heading}>
               {!paymentModeSelected
                 ? "Select Payment Method"
                 : "Payment Method"}{" "}
             </h2>
             {paymentModeSelected && (
-              <button onClick={unSelectPaymentMode}>Change</button>
+              <button
+                className={checkoutStyles.change}
+                onClick={unSelectPaymentMode}
+              >
+                Change
+              </button>
             )}
             {!paymentModeSelected ? (
               <div>

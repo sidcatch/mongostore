@@ -46,6 +46,13 @@
   padding: 1rem;
   border: 1px solid var(--light-color);
 }
+.heading {
+  display: inline-block;
+}
+
+.change {
+  float: right;
+}
 .paymentOptionSelectable {
   width: 100%;
 }

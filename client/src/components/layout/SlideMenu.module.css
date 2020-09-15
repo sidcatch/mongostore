@@ -20,12 +20,12 @@
 }
 .slide-menu-enter-active {
   transform: translateX(0vw);
-  transition: all 200ms;
+  transition: transform 200ms;
 }
 .slide-menu-exit {
   transform: translateX(0vw);
 }
 .slide-menu-exit-active {
   transform: translateX(-60vw);
-  transition: all 200ms;
+  transition: transform 200ms;
 }
