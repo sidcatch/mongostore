@@ -6,6 +6,7 @@ import DropdownItem from "./DropdownItem";
 import cx from "classnames";
 import dropDownMenuStyles from "./DropdownMenu.module.css";
 import globalStyles from "../../Global.module.css";
+
 import dropdownCloseImg from "../../icons/dropdown-close.svg";
 import dropdownOpenImg from "../../icons/dropdown-open.svg";
 import dropdownArrowImg from "../../icons/dropdown-arrow.svg";
@@ -22,6 +23,7 @@ const DropdownMenu = ({ menuTitle, dropDownItems }) => {
     setDropdownState({ ...dropdownState, showDropdown: false });
   };
   const onClick = () => {
+    // console.log("DropdownMenu Clink");
     setDropdownState((prevState) => ({
       ...prevState,
       showDropdown: !prevState.showDropdown,

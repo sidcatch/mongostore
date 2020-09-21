@@ -58,7 +58,12 @@ const SlideMenu = ({
             {menuTitle}
           </span>
 
-          <ul className={slideMenuStyles.slideMenuList}>
+          <ul
+            className={slideMenuStyles.slideMenuList}
+            onClick={() => {
+              hideSlideMenu();
+            }}
+          >
             {slideMenuItems.map(({ title, icon, click, link }, index) => (
               <SlideMenuItem
                 title={title}
@@ -68,15 +73,6 @@ const SlideMenu = ({
                 key={index}
               />
             ))}
-          </ul>
-
-          <ul className={globalStyles.testList}>
-            <li>Hey</li>
-            <li>Hey</li>
-            <li>Hey</li>
-            <li>Hey</li>
-            <li>Hey</li>
-            <li>Hey</li>
           </ul>
         </div>
       </CSSTransition>

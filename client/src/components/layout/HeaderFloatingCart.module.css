@@ -1,34 +1,34 @@
 .header {
   position: fixed;
 
-  top: -10vh;
+  top: -66px;
   /* top: -5vh; */
   /* top: 0;*/
   /* top: 100px; */
-  left: 0;
+  left: 0px;
   width: 100%;
-  height: 10vh;
+  height: 66px;
 
-  z-index: 20;
+  z-index: 60;
 }
 .cartContainerContainer {
   width: 70%;
   margin: auto;
   /* padding-top: 0.5rem; */
-  height: 10vh;
+  height: 66px;
 
   /* background-color: rgba(137, 43, 226, 0.39); */
 }
 .cartContainer {
   position: relative;
   float: right;
-  height: 10vh;
+  height: 66px;
 
   /* padding-top: 0.5rem; */
   padding: 0.5rem;
 
   transition: top 200ms;
-  top: 0vh;
+  top: 0px;
 
   background-color: white;
   border-right: 2px solid var(--light-color);
@@ -38,7 +38,7 @@
   border-radius: 0 0 10px 10px;
 }
 .showCartContainer {
-  top: 10vh;
+  top: 66px;
 }
 
 .cart {

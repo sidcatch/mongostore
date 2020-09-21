@@ -1,16 +1,22 @@
 .slideMenuItem {
   display: flex;
   align-items: center;
-  height: 2.5rem;
+  height: 3rem;
   border-bottom: 1px solid var(--light-color);
 
   padding: 0.5rem;
   color: var(--primary-color);
+
+  font-size: 1.5rem;
 }
 .slideMenuItem:hover {
   background-color: var(--secondary-color-light);
 }
 
+.slideMenuIcon {
+  margin-left: 0.5rem;
+}
+
 .slidMenuText {
-  padding-left: 0.5rem;
+  margin-left: 0.5rem;
 }

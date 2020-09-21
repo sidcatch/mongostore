@@ -37,14 +37,25 @@ const Header = ({ isAuthenticated, logout, itemCount }) => {
 
   return (
     <header>
-      <img
-        className={cx(headerStyles.slideMenuIcon, globalStyles.mediumIcon)}
-        src={slideMenuIcon}
-        alt="Slide"
-        onClick={() => {
-          setSlideMenu(true);
-        }}
-      />
+      {isAuthenticated ? (
+        <img
+          className={cx(headerStyles.slideMenuIcon, globalStyles.mediumIcon)}
+          src={slideMenuIcon}
+          alt="Slide"
+          onClick={() => {
+            setSlideMenu(true);
+          }}
+        />
+      ) : (
+        <Link to={"/login"} style={{ textDecoration: "none" }}>
+          <img
+            className={cx(headerStyles.loginIcon, globalStyles.mediumIcon)}
+            src={profileImg}
+            alt="Login"
+          />
+        </Link>
+      )}
+
       <div className={headerStyles.logoContainer}>
         <Link to={"/"} style={{ textDecoration: "none" }}>
           <img className={headerStyles.logo} src={logo} alt="logo" />
@@ -56,7 +67,9 @@ const Header = ({ isAuthenticated, logout, itemCount }) => {
         <DropdownMenu menuTitle="My Account" dropDownItems={dropDownItems} />
       ) : (
         <Link to={"/login"} style={{ textDecoration: "none" }}>
-          <button className={globalStyles.btn}>Login</button>
+          <button className={cx(globalStyles.btn, headerStyles.loginBtn)}>
+            Login
+          </button>
         </Link>
       )}
 

@@ -73,3 +73,11 @@
   margin: 0px 0.2rem;
   background-color: var(--secondary-color-light);
 }
+
+@media only screen and (max-width: 550px) {
+  .porductsContainer {
+    grid-template-columns: 1fr 1fr;
+
+    margin: 2rem 5px;
+  }
+}

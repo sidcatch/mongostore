@@ -25,3 +25,22 @@
 .searchIcon {
   height: 1.4rem;
 }
+@media only screen and (max-width: 550px) {
+  .formContainer {
+    flex-grow: 0;
+    order: 1;
+    margin-left: 0px;
+    margin: auto;
+  }
+  .form input[type="text"] {
+    width: 77vw;
+    height: 3rem;
+  }
+  .searchButton {
+    height: 3rem;
+    width: 3rem;
+  }
+  .searchIcon {
+    height: 2rem;
+  }
+}

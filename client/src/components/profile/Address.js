@@ -150,7 +150,7 @@ const Address = ({
           {name} {mobile}
         </p>
 
-        <address id={addressStyles.address}>
+        <address className={addressStyles.address}>
           {address}, {city}, {state}
         </address>
         <p className={addressStyles.pincode}>{pincode}</p>

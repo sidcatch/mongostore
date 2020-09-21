@@ -37,7 +37,9 @@ const Order = ({
         <p className={ordersStyles.time}>
           {estimatedArrivalDate.split("T")[0]}
         </p>
-        <p className={ordersStyles.amount}>Amount : ₹{totalAmount}</p>
+        <p className={ordersStyles.amount}>
+          {/* Amount :  */}₹{totalAmount}
+        </p>
         <p className={ordersStyles.noOfItems}>{items.length} items</p>
         <p className={ordersStyles.payment}>{paymentMethod}</p>
         <img

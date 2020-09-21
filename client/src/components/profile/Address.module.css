@@ -33,7 +33,11 @@
   border: 1px solid var(--primary-color);
 }
 
-#address {
+/* #address {
+  margin: 0.5rem 0;
+} */
+
+.address {
   margin: 0.5rem 0;
 }
 #manageAddresses {
@@ -110,7 +114,7 @@
   margin: 5rem auto 0rem auto;
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
   .addressContainer {
     padding-left: 3rem;
     width: 100%;
@@ -124,15 +128,25 @@
   .form textarea {
     width: 65%;
   }
-}
+} */
 
 @media screen and (max-width: 500px) {
   .addressContainer {
-    padding-left: 1rem;
-    padding-right: 0rem;
-    width: 100%;
-  }
+    width: 95%;
+    margin: auto;
 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .addAddress {
+    width: 95%;
+    display: block;
+    margin: auto;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  /*
   .form input[type="text"],
   .form input[type="email"],
   .form input[type="password"],
@@ -140,5 +154,5 @@
   .form select,
   .form textarea {
     width: 65%;
-  }
+  } */
 }

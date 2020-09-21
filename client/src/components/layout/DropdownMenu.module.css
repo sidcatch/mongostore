@@ -27,7 +27,7 @@
   border-right: 1px solid var(--light-color);
   background-color: white;
   transition: opacity 200ms;
-  z-index: 1000;
+  z-index: 70;
 }
 
 .dropdown-enter {
@@ -55,7 +55,7 @@
   top: -1.3rem;
 }
 
-@media screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .dropdownMenu {
     display: none;
   }

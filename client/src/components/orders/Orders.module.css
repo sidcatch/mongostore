@@ -64,3 +64,49 @@
   text-align: center;
   font-weight: bold;
 }
+@media only screen and (max-width: 550px) {
+  .orders {
+    width: 90%;
+
+    font-size: 0.7rem;
+  }
+
+  .order {
+    padding: 5px 0px;
+  }
+
+  .statusIcon {
+    margin: 0px;
+    margin-right: 5px;
+  }
+  .status,
+  .time,
+  .amount,
+  .noOfItems {
+    flex: 1;
+    padding: 0px;
+    text-align: center;
+  }
+
+  .dropdownCloseOpenIcon {
+    margin: 0px;
+    height: 10px;
+    margin-left: 5px;
+  }
+
+  .item {
+    font-size: 0.7rem;
+  }
+
+  .title,
+  .price,
+  .quantity,
+  .subTotal {
+    padding: 0px;
+  }
+  .title {
+    flex: 4;
+    text-align: left;
+    margin-left: 5px;
+  }
+}

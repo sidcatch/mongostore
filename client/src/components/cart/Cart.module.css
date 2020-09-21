@@ -14,6 +14,24 @@
 }
 /* .items {
 } */
+.itemHeading {
+  flex: 2;
+}
+.itemHeading,
+.priceHeading,
+.quantityHeading,
+.totalHeading {
+  font-size: 1.1rem;
+  padding: 20px;
+}
+
+.priceHeading,
+.quantityHeading,
+.totalHeading {
+  flex: 1;
+  text-align: center;
+}
+
 .item {
   display: flex;
   justify-content: space-around;
@@ -22,15 +40,7 @@
   list-style-type: none;
   border-bottom: 1px solid var(--light-color);
 }
-.itemHeading {
-  flex: 2;
-}
-.priceHeading,
-.quantityHeading,
-.totalHeading {
-  flex: 1;
-  text-align: center;
-}
+
 .title {
   flex: 2;
 }
@@ -41,13 +51,6 @@
   text-align: center;
 }
 
-.itemHeading,
-.priceHeading,
-.quantityHeading,
-.totalHeading {
-  font-size: 1.1rem;
-  padding: 20px;
-}
 .title,
 .price,
 .quantity,
@@ -80,13 +83,14 @@
   float: right;
   margin: 1rem;
 }
+/* .total */
 
 .emptyCart {
   display: inline-block;
   width: 6.5rem;
   background: white;
   color: var(--dark-color);
-  padding: 0.4rem 0.3rem;
+  /* padding: 0.4rem 0.3rem; */
   font-size: 1rem;
   border: none;
   cursor: pointer;
@@ -95,4 +99,40 @@
 }
 .emptyCart:hover {
   color: var(--primary-color);
+}
+
+@media only screen and (max-width: 550px) {
+  .cart {
+    width: 95%;
+  }
+  .itemHeading,
+  .priceHeading,
+  .quantityHeading,
+  .totalHeading {
+    font-size: 0.7rem;
+    padding: 10px;
+  }
+
+  .item {
+    font-size: 0.7rem;
+  }
+
+  .title,
+  .price,
+  .quantity,
+  .subTotal {
+    padding: 5px;
+  }
+
+  .increment,
+  .decrement {
+    width: 20px;
+    height: 20px;
+
+    font-size: 0.7rem;
+  }
+
+  .total {
+    margin: 0.7rem;
+  }
 }

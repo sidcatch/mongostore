@@ -13,3 +13,8 @@
   text-align: center;
   font-weight: bold;
 }
+@media only screen and (max-width: 550px) {
+  .alert {
+    width: 90vw;
+  }
+}

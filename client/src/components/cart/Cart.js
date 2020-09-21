@@ -33,6 +33,12 @@ const Cart = ({ items, emptyCart, token }) => {
           ))}
         </div>
 
+        <h2 className={cartStyles.total}>TOTAL: ₹{total}</h2>
+
+        <button onClick={emptyCart} className={cartStyles.emptyCart}>
+          Empty Cart
+        </button>
+        <div className="clearfix"></div>
         {items.length > 0 && (
           <Link
             to={`${token ? "/checkout" : "/login/checkout"}`}
@@ -43,11 +49,7 @@ const Cart = ({ items, emptyCart, token }) => {
             </button>
           </Link>
         )}
-
-        <button onClick={emptyCart} className={cartStyles.emptyCart}>
-          Empty Cart
-        </button>
-        <h2 className={cartStyles.total}>TOTAL: ₹{total}</h2>
+        <div className="clearfix"></div>
       </div>
     </Fragment>
   );
