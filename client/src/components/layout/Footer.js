@@ -10,14 +10,14 @@ const Footer = () => {
     <footer>
       <a href="https://mongostore.in/">Home</a>
       <a
-        href="https://mongostore.in/"
+        href="https://syedimaduddin.com/"
         target="_blank"
         rel="noopener noreferrer"
       >
         About
       </a>
       <a
-        href="https://mongostore.in/"
+        href="https://syedimaduddin.com/contact/"
         target="_blank"
         rel="noopener noreferrer"
       >

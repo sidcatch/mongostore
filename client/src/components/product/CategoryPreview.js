@@ -30,7 +30,7 @@ const CategoryPreview = ({ category }) => {
         let products = res.data;
 
         setProducts(products);
-        setProductsState({});
+        setProductsState((p) => ({ ...p, productsLoading: false }));
       } catch (err) {
         console.log(err);
         //console.log(err.response.data);
