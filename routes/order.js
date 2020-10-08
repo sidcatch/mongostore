@@ -16,18 +16,18 @@ const auth = require("../middleware/auth");
 const COD = "Cash On Delivery";
 const CARD = "Credit Card / Debit Card";
 
-const getItemsWithTherePrices = async (items) => {
+const getItemsWithTheirPrices = async (items) => {
   let productIDs = [];
 
   items.forEach((item) => productIDs.push(item.productID));
 
   let products = await Product.find({ _id: { $in: productIDs } });
 
-  let itemsWithTherePrices = [];
+  let itemsWithTheirPrices = [];
   items.forEach((item, index) => {
     let product = products.find((product) => item.productID == product._id);
     if (product)
-      itemsWithTherePrices.push({
+      itemsWithTheirPrices.push({
         title: product.title,
         price: product.price,
         quantity: parseInt(item.quantity),
@@ -45,7 +45,7 @@ const getItemsWithTherePrices = async (items) => {
     };
   }); */
 
-  return itemsWithTherePrices;
+  return itemsWithTheirPrices;
 };
 
 const calculateOrderAmount = (items) => {
@@ -79,7 +79,7 @@ router.post("/", auth, async (req, res) => {
       items[index].quantity = parseInt(items[index].quantity);
     }); */
 
-    let itemsToOrder = await getItemsWithTherePrices(items);
+    let itemsToOrder = await getItemsWithTheirPrices(items);
 
     //console.log(itemsToOrder);
     /* let totalAmount = 0;
@@ -127,7 +127,7 @@ router.get("/all", auth, async (req, res) => {
 router.post("/create-payment-intent", auth, async (req, res) => {
   const { items } = req.body;
 
-  let itemsToOrder = await getItemsWithTherePrices(items);
+  let itemsToOrder = await getItemsWithTheirPrices(items);
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
