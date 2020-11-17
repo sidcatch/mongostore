@@ -19,7 +19,13 @@ const resetInterval = (prevInterval, setState) => {
   return timer;
 };
 
-const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
+const Carousel = ({
+  images,
+  carouselWidth,
+  carouselWidthUnit,
+  carouselHeight,
+  carouselHeightUnit,
+}) => {
   const [carouselState, setCarouselState] = useState({
     counter: 1,
     shouldTransition: true,
@@ -79,7 +85,10 @@ const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
     <Fragment>
       <div
         className={carouselStyles.carouselContainer}
-        style={{ width: `${carouselWidth}${carouselWidthUnit}` }}
+        style={{
+          width: `${carouselWidth}${carouselWidthUnit}`,
+          height: `${carouselHeight}${carouselHeightUnit}`,
+        }}
       >
         <button className={carouselStyles.prevBtn} onClick={previous}>
           <img src={prevImg} className={carouselStyles.prevImg} alt="" />
@@ -102,7 +111,10 @@ const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
           <img
             src={images[images.length - 1]}
             className={carouselStyles.img}
-            style={{ width: `${carouselWidth}${carouselWidthUnit}` }}
+            style={{
+              width: `${carouselWidth}${carouselWidthUnit}`,
+              height: `${carouselHeight}${carouselHeightUnit}`,
+            }}
             alt=""
           ></img>
 
@@ -112,6 +124,7 @@ const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
               className={carouselStyles.img}
               style={{
                 width: `${carouselWidth}${carouselWidthUnit}`,
+                height: `${carouselHeight}${carouselHeightUnit}`,
               }}
               alt=""
               key={index}
@@ -120,7 +133,10 @@ const Carousel = ({ images, carouselWidth, carouselWidthUnit }) => {
           <img
             src={images[0]}
             className={carouselStyles.img}
-            style={{ width: `${carouselWidth}${carouselWidthUnit}` }}
+            style={{
+              width: `${carouselWidth}${carouselWidthUnit}`,
+              height: `${carouselHeight}${carouselHeightUnit}`,
+            }}
             alt=""
           ></img>
         </div>

@@ -50,6 +50,8 @@ const App = () => {
                 images={images}
                 carouselWidth={90}
                 carouselWidthUnit="vw"
+                carouselHeight={26}
+                carouselHeightUnit="vw"
               />
             )}
           />
