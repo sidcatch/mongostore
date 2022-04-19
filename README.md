@@ -19,6 +19,9 @@ fill the json file with appropriate values.
 In the project directory, run:
 
 ### `npm install`
+### `cd ./client`
+### `npm install`
+### `cd ..`
 
 then run:
 
